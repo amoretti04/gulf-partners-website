@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gulf Partners - Strategic Capital Advisory</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-black: #0a0a0a;
+            --secondary-black: #1a1a1a;
+            --primary-blue: #003d82;
+            --accent-gold: #c9a961;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --text-gray: #666666;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--primary-black);
+            background: var(--white);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--white);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 25px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--primary-black);
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--primary-blue);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 45px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--primary-black);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-blue);
+        }
+
+        /* Page Container */
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding-top: 90px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary-black);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-black) 100%);
+            opacity: 0.7;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 900px;
+            padding: 0 40px;
+        }
+
+        .hero h1 {
+            font-size: 72px;
+            font-weight: 300;
+            margin-bottom: 30px;
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
+
+        .hero h1 strong {
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 20px;
+            font-weight: 300;
+            margin-bottom: 50px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 50px;
+            background: var(--white);
+            color: var(--primary-black);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s;
+            border: 2px solid var(--white);
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: var(--white);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 120px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            max-width: 800px;
+            margin-bottom: 80px;
+        }
+
+        .section-label {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 300;
+            color: var(--primary-black);
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+        }
+
+        .section-description {
+            font-size: 18px;
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 60px;
+            padding: 80px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            border-top: 3px solid var(--accent-gold);
+            padding-top: 30px;
+        }
+
+        .stat-number {
+            font-size: 56px;
+            font-weight: 300;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .stat-label {
+            font-size: 15px;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Featured Section */
+        .featured {
+            background: var(--light-gray);
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px;
+            background: var(--white);
+        }
+
+        .featured-item {
+            background: var(--light-gray);
+            padding: 80px 60px;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 0;
+            background: var(--accent-gold);
+            transition: height 0.5s ease;
+        }
+
+        .featured-item:hover::before {
+            height: 100%;
+        }
+
+        .featured-item:hover {
+            background: var(--white);
+            transform: translateY(-5px);
+        }
+
+        .featured-number {
+            font-size: 14px;
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .featured-title {
+            font-size: 28px;
+            font-weight: 400;
+            color: var(--primary-black);
+            margin-bottom: 20px;
+        }
+
+        .featured-description {
+            font-size: 16px;
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+            margin-top: 60px;
+        }
+
+        .team-member {
+            text-align: left;
+        }
+
+        .team-photo {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: var(--light-gray);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: var(--text-gray);
+            font-weight: 300;
+        }
+
+        .team-name {
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--primary-black);
+            margin-bottom: 8px;
+        }
+
+        .team-position {
+            font-size: 14px;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .team-bio {
+            font-size: 15px;
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: var(--white);
+            margin-top: 60px;
+        }
+
+        .portfolio-item {
+            aspect-ratio: 1;
+            background: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--primary-blue);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 0.95;
+        }
+
+        .portfolio-logo {
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--primary-black);
+        }
+
+        .portfolio-name {
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+
+        .portfolio-sector {
+            font-size: 14px;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Approach Pillars */
+        .pillars {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            margin-top: 80px;
+        }
+
+        .pillar {
+            padding: 80px 60px;
+            background: var(--light-gray);
+            border-right: 1px solid var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .pillar:last-child {
+            border-right: none;
+        }
+
+        .pillar:hover {
+            background: var(--primary-black);
+        }
+
+        .pillar:hover .pillar-number,
+        .pillar:hover .pillar-title,
+        .pillar:hover .pillar-description {
+            color: var(--white);
+        }
+
+        .pillar:hover .pillar-number {
+            color: var(--accent-gold);
+        }
+
+        .pillar-number {
+            font-size: 72px;
+            font-weight: 200;
+            color: var(--accent-gold);
+            margin-bottom: 30px;
+            transition: color 0.3s ease;
+        }
+
+        .pillar-title {
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--primary-black);
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .pillar-description {
+            font-size: 15px;
+            color: var(--text-gray);
+            line-height: 1.8;
+            transition: color 0.3s ease;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            font-size: 32px;
+            font-weight: 400;
+            margin-bottom: 40px;
+            color: var(--primary-black);
+        }
+
+        .contact-item {
+            margin-bottom: 50px;
+        }
+
+        .contact-label {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .contact-details {
+            font-size: 18px;
+            color: var(--primary-black);
+            line-height: 1.8;
+        }
+
+        .contact-details a {
+            color: var(--primary-black);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-details a:hover {
+            color: var(--primary-blue);
+        }
+
+        .contact-form {
+            background: var(--light-gray);
+            padding: 60px;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary-black);
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 0;
+            border: none;
+            border-bottom: 1px solid var(--primary-black);
+            background: transparent;
+            font-family: inherit;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-bottom-color: var(--primary-blue);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 18px;
+            background: var(--primary-black);
+            color: var(--white);
+            border: 2px solid var(--primary-black);
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-button:hover {
+            background: transparent;
+            color: var(--primary-black);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-black);
+            color: var(--white);
+            padding: 80px 40px 40px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-section h4 {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 30px;
+            color: var(--white);
+        }
+
+        .footer-section p {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 15px;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-logo {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 52px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .pillars {
+                grid-template-columns: 1fr;
+            }
+
+            .pillar {
+                border-right: none;
+                border-bottom: 1px solid var(--white);
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                height: 70vh;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .section {
+                padding: 80px 20px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 40px 30px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="nav">
+        <div class="nav-container">
+            <div class="logo">GULF<span>.PARTNERS</span></div>
+            <ul class="nav-links">
+                <li><a href="#" data-page="home" class="active">Home</a></li>
+                <li><a href="#" data-page="approach">Approach</a></li>
+                <li><a href="#" data-page="team">Team</a></li>
+                <li><a href="#" data-page="portfolio">Portfolio</a></li>
+                <li><a href="#" data-page="contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div id="home" class="page active">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Multiplying <strong>Potential</strong><br>Through Strategic Capital</h1>
+                <p>We partner with visionary leaders to unlock sustainable growth and create enduring value across global markets</p>
+                <a href="#" class="cta-button" onclick="navigateTo('contact')">Connect With Us</a>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-label">Who We Are</div>
+                <h2 class="section-title">Building Tomorrow's Market Leaders</h2>
+                <p class="section-description">
+                    Gulf Partners is a leading private capital advisory firm specializing in strategic investments 
+                    across the Gulf region and international markets. We combine deep sector expertise with an 
+                    entrepreneurial approach to create lasting value for our partners.
+                </p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">$5.2B</div>
+                    <div class="stat-label">Assets Under Management</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">120+</div>
+                    <div class="stat-label">Portfolio Companies</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">18</div>
+                    <div class="stat-label">Years of Excellence</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15</div>
+                    <div class="stat-label">Global Offices</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured">
+            <div class="section" style="padding-bottom: 0;">
+                <div class="section-header">
+                    <div class="section-label">Our Focus</div>
+                    <h2 class="section-title">Investment Strategies</h2>
+                </div>
+            </div>
+            <div class="featured-grid">
+                <div class="featured-item">
+                    <div class="featured-number">01</div>
+                    <h3 class="featured-title">Growth Capital</h3>
+                    <p class="featured-description">
+                        Providing strategic capital to established businesses seeking to accelerate expansion, 
+                        enter new markets, or pursue transformative acquisitions.
+                    </p>
+                </div>
+                <div class="featured-item">
+                    <div class="featured-number">02</div>
+                    <h3 class="featured-title">Buyout Investments</h3>
+                    <p class="featured-description">
+                        Control-oriented investments in market-leading businesses with strong fundamentals 
+                        and significant value creation potential.
+                    </p>
+                </div>
+                <div class="featured-item">
+                    <div class="featured-number">03</div>
+                    <h3 class="featured-title">Venture Capital</h3>
+                    <p class="featured-description">
+                        Early to growth-stage investments in innovative technology companies that are reshaping 
+                        industries and creating new markets.
+                    </p>
+                </div>
+                <div class="featured-item">
+                    <div class="featured-number">04</div>
+                    <h3 class="featured-title">Real Assets</h3>
+                    <p class="featured-description">
+                        Strategic investments in infrastructure, real estate, and tangible assets that provide 
+                        stable returns and portfolio diversification.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- APPROACH PAGE -->
+    <div id="approach" class="page">
+        <section class="section" style="padding-top: 180px;">
+            <div class="section-header">
+                <div class="section-label">Our Approach</div>
+                <h2 class="section-title">Value Creation Through Partnership</h2>
+                <p class="section-description">
+                    Our investment philosophy is built on three fundamental pillars that guide every decision 
+                    and partnership. We believe that sustainable value creation requires more than capital—it 
+                    demands deep collaboration, operational expertise, and a long-term perspective.
+                </p>
+            </div>
+
+            <div class="pillars">
+                <div class="pillar">
+                    <div class="pillar-number">01</div>
+                    <h3 class="pillar-title">Strategic Partnership</h3>
+                    <p class="pillar-description">
+                        We invest in people, not just businesses. Our partnership approach means working 
+                        closely with management teams to align vision, strategy, and execution. We bring 
+                        institutional resources while respecting entrepreneurial spirit.
+                    </p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-number">02</div>
+                    <h3 class="pillar-title">Operational Excellence</h3>
+                    <p class="pillar-description">
+                        Our dedicated value creation team works alongside portfolio companies to drive 
+                        operational improvements, implement best practices, and accelerate growth through 
+                        proven methodologies and deep sector expertise.
+                    </p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-number">03</div>
+                    <h3 class="pillar-title">Global Network</h3>
+                    <p class="pillar-description">
+                        Access to our extensive network of industry experts, corporate partners, and institutional 
+                        investors opens doors to new opportunities, strategic relationships, and cross-border 
+                        expansion possibilities.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <div class="section-label">Investment Process</div>
+                <h2 class="section-title">Disciplined & Collaborative</h2>
+            </div>
+
+            <div class="featured-grid" style="grid-template-columns: 1fr;">
+                <div class="featured-item">
+                    <div class="featured-number">Discovery</div>
+                    <h3 class="featured-title">Understanding Your Vision</h3>
+                    <p class="featured-description">
+                        We begin by deeply understanding your business, market position, growth ambitions, 
+                        and strategic challenges. This collaborative discovery phase ensures alignment on 
+                        goals and expectations from day one.
+                    </p>
+                </div>
+                <div class="featured-item">
+                    <div class="featured-number">Due Diligence</div>
+                    <h3 class="featured-title">Rigorous Analysis</h3>
+                    <p class="featured-description">
+                        Our thorough due diligence process examines every aspect of the business—from 
+                        financials and operations to market dynamics and competitive positioning. We identify 
+                        both opportunities and risks to inform our investment thesis.
+                    </p>
+                </div>
+                <div class="featured-item">
+                    <div class="featured-number">Value Creation</div>
+                    <h3 class="featured-title">Driving Growth Together</h3>
+                    <p class="featured-description">
+                        Post-investment, we work hand-in-hand with management to execute the value creation 
+                        plan. Our operational resources, strategic guidance, and network are deployed to 
+                        accelerate growth and enhance performance.
+                    </p>
+                </div>
+                <div class="featured-item">
+                    <div class="featured-number">Exit Strategy</div>
+                    <h3 class="featured-title">Maximizing Returns</h3>
+                    <p class="featured-description">
+                        We maintain a disciplined approach to realizing value, whether through strategic sales, 
+                        IPOs, or secondary transactions. Our goal is to maximize returns while positioning the 
+                        business for continued long-term success.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- TEAM PAGE -->
+    <div id="team" class="page">
+        <section class="section" style="padding-top: 180px;">
+            <div class="section-header">
+                <div class="section-label">Our People</div>
+                <h2 class="section-title">Experience Meets Innovation</h2>
+                <p class="section-description">
+                    Our team brings together decades of investment experience with fresh perspectives and 
+                    innovative thinking. United by a commitment to excellence and a passion for building 
+                    exceptional businesses, we are trusted partners to entrepreneurs and executives worldwide.
+                </p>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-photo">AA</div>
+                    <h3 class="team-name">Ahmed Al-Mansouri</h3>
+                    <div class="team-position">Founding Partner & CEO</div>
+                    <p class="team-bio">
+                        Ahmed has over 25 years of private equity experience across the Gulf region. Prior to 
+                        founding Gulf Partners, he was a senior partner at a leading global investment firm 
+                        where he led investments exceeding $3 billion across multiple sectors.
+                    </p>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-photo">SK</div>
+                    <h3 class="team-name">Sarah Khan</h3>
+                    <div class="team-position">Managing Partner, Investments</div>
+                    <p class="team-bio">
+                        Sarah leads our investment activities with 20+ years of M&A and corporate finance 
+                        experience. She has advised on transactions valued at over $15 billion and brings 
+                        deep expertise in cross-border deal structuring and execution.
+                    </p>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-photo">MR</div>
+                    <h3 class="team-name">Michael Rodriguez</h3>
+                    <div class="team-position">Partner, Growth Capital</div>
+                    <p class="team-bio">
+                        Michael oversees our growth capital strategy with extensive investment banking and 
+                        private equity experience. He specializes in technology-enabled businesses and has 
+                        supported over 40 companies through various growth stages.
+                    </p>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-photo">FS</div>
+                    <h3 class="team-name">Fatima Al-Suwaidi</h3>
+                    <div class="team-position">Partner, Value Creation</div>
+                    <p class="team-bio">
+                        Fatima heads our value creation practice, bringing deep operational expertise from 
+                        consulting and industry roles. She has driven transformational change across portfolio 
+                        companies, consistently delivering above-market returns.
+                    </p>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-photo">DL</div>
+                    <h3 class="team-name">David Lee</h3>
+                    <div class="team-position">Partner, Venture Capital</div>
+                    <p class="team-bio">
+                        David leads our venture capital investments with a focus on fintech and digital 
+                        transformation. Former technology entrepreneur with successful exits and extensive 
+                        network in the global venture ecosystem.
+                    </p>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-photo">NA</div>
+                    <h3 class="team-name">Noor Abbas</h3>
+                    <div class="team-position">Partner, Real Assets</div>
+                    <p class="team-bio">
+                        Noor manages our real assets portfolio with 18 years of experience in infrastructure 
+                        and real estate investing. She has led investments in major projects across the Gulf 
+                        region and emerging markets.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="background: var(--light-gray);">
+            <div class="section-header">
+                <div class="section-label">Join Our Team</div>
+                <h2 class="section-title">Careers at Gulf Partners</h2>
+                <p class="section-description">
+                    We're always looking for talented professionals who share our passion for building 
+                    exceptional businesses. If you're driven by excellence and want to make a meaningful 
+                    impact, we'd love to hear from you.
+                </p>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="cta-button" style="background: var(--primary-black); color: var(--white); border-color: var(--primary-black);" onclick="navigateTo('contact')">
+                    Explore Opportunities
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- PORTFOLIO PAGE -->
+    <div id="portfolio" class="page">
+        <section class="section" style="padding-top: 180px;">
+            <div class="section-header">
+                <div class="section-label">Our Portfolio</div>
+                <h2 class="section-title">Building Market Leaders</h2>
+                <p class="section-description">
+                    Our portfolio represents a diverse collection of exceptional businesses across multiple 
+                    sectors and geographies. Each investment reflects our commitment to partnering with 
+                    visionary leaders to create sustainable value and industry-leading companies.
+                </p>
+            </div>
+
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-logo">TechCore</div>
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-name">TechCore Systems</div>
+                        <div class="portfolio-sector">Technology</div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-logo">MedPlus</div>
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-name">MedPlus Healthcare</div>
+                        <div class="portfolio-sector">Healthcare</div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-logo">RetailHub</div>
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-name">RetailHub Group</div>
+                        <div class="portfolio-sector">Consumer</div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-logo">FinServ</div>
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-name">FinServ Solutions</div>
+                        <div class="portfolio-sector">Financial Services</div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-logo">LogiTrans</div>
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-name">LogiTrans Global</div>
+                        <div class="portfolio-sector">Logistics</div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-logo">EduNext</div>
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-name">EduNext Learning</div>
+                        <div class="portfolio-sector">Education</div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-logo">GreenPwr</div>
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-name">GreenPower Energy</div>
+                        <div class="portfolio-sector">Renewable Energy</div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-logo">BuildCo</div>
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-name">BuildCo Industries</div>
+                        <div class="portfolio-sector">Construction</div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-logo">DataLink</div>
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-name">DataLink Analytics</div>
+                        <div class="portfolio-sector">Data & AI</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="background: var(--primary-black); color: var(--white);">
+            <div class="section-header">
+                <div class="section-label" style="color: var(--accent-gold);">Portfolio Impact</div>
+                <h2 class="section-title" style="color: var(--white);">Creating Lasting Value</h2>
+                <p class="section-description" style="color: rgba(255,255,255,0.7);">
+                    Our portfolio companies collectively represent over $12 billion in enterprise value and 
+                    employ more than 85,000 people across 40+ countries. Through active partnership and 
+                    operational support, we've helped these businesses achieve extraordinary growth.
+                </p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-item" style="border-top-color: var(--accent-gold);">
+                    <div class="stat-number" style="color: var(--accent-gold);">3.2x</div>
+                    <div class="stat-label" style="color: rgba(255,255,255,0.7);">Average MOIC</div>
+                </div>
+                <div class="stat-item" style="border-top-color: var(--accent-gold);">
+                    <div class="stat-number" style="color: var(--accent-gold);">42%</div>
+                    <div class="stat-label" style="color: rgba(255,255,255,0.7);">Revenue Growth (Avg)</div>
+                </div>
+                <div class="stat-item" style="border-top-color: var(--accent-gold);">
+                    <div class="stat-number" style="color: var(--accent-gold);">65+</div>
+                    <div class="stat-label" style="color: rgba(255,255,255,0.7);">Successful Exits</div>
+                </div>
+                <div class="stat-item" style="border-top-color: var(--accent-gold);">
+                    <div class="stat-number" style="color: var(--accent-gold);">28%</div>
+                    <div class="stat-label" style="color: rgba(255,255,255,0.7);">IRR (Net)</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div id="contact" class="page">
+        <section class="section" style="padding-top: 180px;">
+            <div class="section-header">
+                <div class="section-label">Get in Touch</div>
+                <h2 class="section-title">Let's Start a Conversation</h2>
+                <p class="section-description">
+                    Whether you're an entrepreneur seeking growth capital, an investor interested in our 
+                    funds, or a talented professional exploring opportunities, we'd love to hear from you.
+                </p>
+            </div>
+
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Connect With Us</h3>
+                    
+                    <div class="contact-item">
+                        <div class="contact-label">Headquarters</div>
+                        <div class="contact-details">
+                            DIFC, Gate Village 4<br>
+                            Level 15, Office 1501<br>
+                            Dubai, United Arab Emirates
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-label">General Inquiries</div>
+                        <div class="contact-details">
+                            <a href="mailto:info@gulf.partners">info@gulf.partners</a><br>
+                            <a href="tel:+97145551234">+971 4 555 1234</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-label">Investor Relations</div>
+                        <div class="contact-details">
+                            <a href="mailto:ir@gulf.partners">ir@gulf.partners</a><br>
+                            <a href="tel:+97145551235">+971 4 555 1235</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-label">Regional Offices</div>
+                        <div class="contact-details">
+                            Abu Dhabi | Riyadh | London<br>
+                            New York | Singapore | Hong Kong
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form onsubmit="return handleSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" id="company">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <input type="text" id="subject" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-button">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Gulf Partners</h4>
+                <p>
+                    A leading private capital advisory firm partnering with visionary leaders to 
+                    unlock sustainable growth and create enduring value across global markets.
+                </p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#" onclick="navigateTo('home')">Home</a></li>
+                    <li><a href="#" onclick="navigateTo('approach')">Approach</a></li>
+                    <li><a href="#" onclick="navigateTo('team')">Team</a></li>
+                    <li><a href="#" onclick="navigateTo('portfolio')">Portfolio</a></li>
+                    <li><a href="#" onclick="navigateTo('contact')">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Sectors</h4>
+                <ul>
+                    <li><a href="#">Technology</a></li>
+                    <li><a href="#">Healthcare</a></li>
+                    <li><a href="#">Consumer</a></li>
+                    <li><a href="#">Financial Services</a></li>
+                    <li><a href="#">Real Assets</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Investor Relations</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">News & Insights</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-logo">GULF.PARTNERS</div>
+            <div>&copy; 2024 Gulf Partners. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const pages = document.querySelectorAll('.page');
+        const nav = document.getElementById('nav');
+
+        function navigateTo(pageId) {
+            // Remove active class from all nav links
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            // Hide all pages
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                
+                // Update active nav link
+                const activeLink = document.querySelector(`[data-page="${pageId}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            
+            return false;
+        }
+
+        // Set up navigation click handlers
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageId = link.getAttribute('data-page');
+                navigateTo(pageId);
+            });
+        });
+
+        // Scroll effect for nav
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Form submission
+        function handleSubmit(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you shortly.');
+            e.target.reset();
+            return false;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set home as active page
+            navigateTo('home');
+        });
+    </script>
+</body>
+</html>
