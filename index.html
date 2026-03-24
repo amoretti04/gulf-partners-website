@@ -22,7 +22,6 @@
             --text-gray: #475569;
         }
 
-        /* Enables smooth scrolling across the whole page */
         html {
             scroll-behavior: smooth;
         }
@@ -35,6 +34,543 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--white);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-img {
+            max-height: 55px; 
+            width: auto;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--primary-black);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent-gold);
+        }
+
+        /* Investor Tab Highlight */
+        .investor-btn {
+            border: 1px solid var(--accent-gold);
+            padding: 8px 18px;
+            border-radius: 2px;
+            color: var(--accent-gold) !important;
+        }
+        .investor-btn:hover {
+            background: var(--accent-gold);
+            color: white !important;
+        }
+
+        /* Login Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.9);
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+
+        .login-box {
+            background: var(--white);
+            padding: 50px;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 4px;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-gray);
+        }
+
+        .login-box h2 {
+            color: var(--primary-blue);
+            margin-bottom: 30px;
+            font-weight: 400;
+            text-align: center;
+        }
+
+        /* Page Sections */
+        .page-section {
+            scroll-margin-top: 85px; 
+            min-height: 100vh;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary-blue);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            padding-top: 85px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(27,42,83,0.95) 0%, rgba(15,23,42,1) 100%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 1000px;
+            padding: 0 40px;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 300;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+            line-height: 1.1;
+        }
+
+        .hero h1 strong {
+            font-weight: 600;
+            color: var(--accent-gold);
+        }
+
+        .hero p {
+            font-size: 20px;
+            font-weight: 300;
+            margin-bottom: 50px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 50px;
+            background: var(--accent-gold);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--accent-gold);
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: var(--accent-gold);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 120px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            max-width: 800px;
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 300;
+            color: var(--primary-blue);
+            margin-bottom: 30px;
+        }
+
+        .section-description {
+            font-size: 18px;
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 60px;
+            padding: 60px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            border-top: 2px solid var(--accent-gold);
+            padding-top: 30px;
+        }
+
+        .stat-number {
+            font-size: 56px;
+            font-weight: 300;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        /* Target Sectors Grid */
+        .sectors-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        
+        .sector-card {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            padding: 50px 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .sector-card:hover {
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+            transform: translateY(-5px);
+        }
+
+        .sector-title {
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+
+        .sector-desc {
+            font-size: 16px;
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+        }
+        
+        .contact-info h3 {
+            font-size: 32px;
+            font-weight: 400;
+            margin-bottom: 40px;
+            color: var(--primary-blue);
+        }
+
+        .contact-item { margin-bottom: 40px; }
+        
+        .contact-label {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .contact-details { font-size: 18px; }
+        .contact-details a { color: var(--primary-black); text-decoration: none; }
+        
+        .contact-form, .login-form {
+            background: var(--light-gray);
+            padding: 40px;
+            border-radius: 4px;
+        }
+
+        .form-group { margin-bottom: 20px; }
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            background: white;
+            font-size: 16px;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-button:hover { background: var(--accent-gold); }
+
+        /* Footer */
+        footer {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 80px 40px 40px;
+        }
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+        }
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 40px auto 0;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        @media (max-width: 1024px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .sectors-grid, .contact-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="modal-overlay" id="loginModal">
+        <div class="login-box">
+            <span class="close-modal" onclick="toggleModal()">&times;</span>
+            <h2>Investor Login</h2>
+            <form class="login-form" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="submit-button">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <nav id="nav">
+        <div class="nav-container">
+            <a href="#home">
+                <img src="GIP logo.png" alt="Gulf Investment Partners" class="logo-img">
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-item active">Home</a></li>
+                <li><a href="#approach" class="nav-item">Approach</a></li>
+                <li><a href="#team" class="nav-item">Team</a></li>
+                <li><a href="#sectors" class="nav-item">Sectors</a></li>
+                <li><a href="#contact" class="nav-item">Contact</a></li>
+                <li><a href="javascript:void(0)" class="investor-btn" onclick="toggleModal()">Investors</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="page-section hero">
+        <div class="hero-content">
+            <h1>Multiplying <strong>Potential</strong><br>Through Strategic Capital</h1>
+            <p>Bridging EMEA platforms with GCC transformation priorities.</p>
+            <a href="#contact" class="cta-button">Connect With Us</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-label">Performance</div>
+            <h2 class="section-title">Track Record of Growth</h2>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">$200M</div>
+                <div class="stat-label">Assets Under Management</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">10-12</div>
+                <div class="stat-label">Target Portfolio Companies</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">20</div>
+                <div class="stat-label">Years of Excellence</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2</div>
+                <div class="stat-label">Global Offices</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sectors" class="page-section" style="background: var(--light-gray);">
+        <div class="section">
+            <div class="section-header">
+                <div class="section-label">Target Sectors</div>
+                <h2 class="section-title">Strategic Areas of Focus</h2>
+            </div>
+
+            <div class="sectors-grid">
+                <div class="sector-card">
+                    <h3 class="sector-title">Water & Resource Efficiency</h3>
+                    <p class="sector-desc">Targeting SMEs in water treatment and monitoring to support GCC water security priorities.</p>
+                </div>
+                <div class="sector-card">
+                    <h3 class="sector-title">Circular Economy</h3>
+                    <p class="sector-desc">Focusing on waste recovery and resource-efficiency services across industrial landscapes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="page-section section">
+        <div class="section-header">
+            <div class="section-label">Contact</div>
+            <h2 class="section-title">Get in Touch</h2>
+        </div>
+
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-label">Headquarters</div>
+                    <div class="contact-details">DIFC, Gate Village 4, Dubai, UAE</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label">Email</div>
+                    <div class="contact-details"><a href="mailto:info@gulfinvestment.partners">info@gulfinvestment.partners</a></div>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <form onsubmit="return handleSubmit(event)">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea required></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-bottom">
+            <div>&copy; 2024 Gulf Investment Partners. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+        // Modal Logic
+        function toggleModal() {
+            const modal = document.getElementById('loginModal');
+            modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('loginModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            alert('Access Denied: Please contact your account manager for authorized portal access.');
+            toggleModal();
+        }
+
+        function handleSubmit(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you shortly.');
+            e.target.reset();
+            return false;
+        }
+
+        // Nav Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('nav');
+            if (window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+    </script>
+</body>
+</html>
         /* Navigation */
         nav {
             position: fixed;
