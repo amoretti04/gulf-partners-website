@@ -792,14 +792,27 @@
             <h2 class="login-heading">Investor Portal</h2>
             <p class="login-sub">Sign in to access your portfolio, reports, and fund documents.</p>
  
-            <form onsubmit="return handleLoginSubmit(event)">
+            <!-- Success state -->
+            <div id="loginSuccess" style="display:none; text-align:center; padding: 20px 0 10px;">
+                <div style="font-size: 40px; margin-bottom: 18px;">&#10003;</div>
+                <h3 style="font-size: 20px; color: var(--primary-blue); font-weight: 500; margin-bottom: 12px;">Request Received</h3>
+                <p style="font-size: 14px; color: var(--text-gray); line-height: 1.7;">Your sign-in request has been forwarded to our team. We will be in touch shortly to confirm your access.</p>
+                <button onclick="closeLogin()" style="margin-top: 28px; padding: 12px 36px; background: var(--primary-blue); color: #fff; border: none; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: background 0.3s;" onmouseover="this.style.background='var(--accent-gold)'" onmouseout="this.style.background='var(--primary-blue)'">Close</button>
+            </div>
+ 
+            <!-- Login form -->
+            <form id="loginForm" onsubmit="return handleLoginSubmit(event)">
+                <input type="hidden" name="_subject" value="Investor Portal - Login Request">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+ 
                 <div class="login-form-group">
                     <label for="login-email">Login</label>
-                    <input type="text" id="login-email" placeholder="your@email.com" autocomplete="username" required>
+                    <input type="text" id="login-email" name="login" placeholder="your@email.com" autocomplete="username" required>
                 </div>
                 <div class="login-form-group">
                     <label for="login-password">Password</label>
-                    <input type="password" id="login-password" placeholder="••••••••••••" autocomplete="current-password" required>
+                    <input type="password" id="login-password" name="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" autocomplete="current-password" required>
                 </div>
  
                 <div class="login-options">
@@ -809,11 +822,14 @@
                     <a href="#" class="login-forgot">Forgot password?</a>
                 </div>
  
-                <button type="submit" class="login-submit">Sign In</button>
+                <button type="submit" class="login-submit" id="loginSubmitBtn">
+                    <span id="loginBtnText">Sign In</span>
+                    <span id="loginBtnLoader" style="display:none;">Sending&#8230;</span>
+                </button>
             </form>
  
             <div class="login-divider"><span>Need access?</span></div>
-            <p class="login-support">Contact investor relations at <a href="mailto:ir@gulfinvestment.partners">ir@gulfinvestment.partners</a></p>
+            <p class="login-support">Contact investor relations at <a href="/cdn-cgi/l/email-protection#84edf6c4e3f1e8e2edeaf2e1f7f0e9e1eaf0aaf4e5f6f0eae1f6f7"><span class="__cf_email__" data-cfemail="c4adb684a3b1a8a2adaab2a1b7b0a9a1aab0eab4a5b6b0aaa1b6b7">[email&#160;protected]</span></a></p>
  
             <div class="login-security-note">
                 <span class="lock-icon">🔒</span>
@@ -893,7 +909,138 @@
                     We deploy up to USD 200 million in preferred structured capital solutions to mid-market companies across the GCC — and selectively in EMEA — to accelerate expansion, support transformative acquisitions, and facilitate the GCC's economic transformation. Our strategy capitalises on a distinctive opportunity: bridging the gap between available capital and the financing needs of SMEs underserved by regional banking systems, targeting attractive risk-adjusted returns.
                 </p>
             </div>
+            <div class="featured-item featured-visual" style="padding: 0; overflow: hidden; min-height: 420px; background: #0f172a; position: relative;">
+                <svg viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;position:absolute;inset:0;" preserveAspectRatio="xMidYMid slice">
+                  <defs>
+                    <radialGradient id="bgGlow" cx="60%" cy="45%" r="55%">
+                      <stop offset="0%" stop-color="#1b2a53" stop-opacity="1"/>
+                      <stop offset="100%" stop-color="#060d1f" stop-opacity="1"/>
+                    </radialGradient>
+                    <radialGradient id="goldGlow" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stop-color="#c59c39" stop-opacity="0.18"/>
+                      <stop offset="100%" stop-color="#c59c39" stop-opacity="0"/>
+                    </radialGradient>
+                    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="#c59c39" stop-opacity="0"/>
+                      <stop offset="50%" stop-color="#c59c39" stop-opacity="0.9"/>
+                      <stop offset="100%" stop-color="#c59c39" stop-opacity="0"/>
+                    </linearGradient>
+                    <linearGradient id="barGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stop-color="#c59c39" stop-opacity="0.95"/>
+                      <stop offset="100%" stop-color="#c59c39" stop-opacity="0.2"/>
+                    </linearGradient>
+                    <linearGradient id="barGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stop-color="#c59c39" stop-opacity="0.7"/>
+                      <stop offset="100%" stop-color="#c59c39" stop-opacity="0.1"/>
+                    </linearGradient>
+                    <linearGradient id="curveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="#c59c39" stop-opacity="0.1"/>
+                      <stop offset="60%" stop-color="#c59c39" stop-opacity="1"/>
+                      <stop offset="100%" stop-color="#e8c46a" stop-opacity="0.8"/>
+                    </linearGradient>
+                    <filter id="softGlow">
+                      <feGaussianBlur stdDeviation="4" result="blur"/>
+                      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                    <filter id="nodeGlow">
+                      <feGaussianBlur stdDeviation="5" result="blur"/>
+                      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                    <clipPath id="svgClip">
+                      <rect width="640" height="480"/>
+                    </clipPath>
+                  </defs>
  
+                  <!-- Background -->
+                  <rect width="640" height="480" fill="url(#bgGlow)"/>
+ 
+                  <!-- Subtle grid -->
+                  <g opacity="0.06" stroke="#c59c39" stroke-width="0.5">
+                    <line x1="0" y1="80" x2="640" y2="80"/>
+                    <line x1="0" y1="160" x2="640" y2="160"/>
+                    <line x1="0" y1="240" x2="640" y2="240"/>
+                    <line x1="0" y1="320" x2="640" y2="320"/>
+                    <line x1="0" y1="400" x2="640" y2="400"/>
+                    <line x1="80" y1="0" x2="80" y2="480"/>
+                    <line x1="160" y1="0" x2="160" y2="480"/>
+                    <line x1="240" y1="0" x2="240" y2="480"/>
+                    <line x1="320" y1="0" x2="320" y2="480"/>
+                    <line x1="400" y1="0" x2="400" y2="480"/>
+                    <line x1="480" y1="0" x2="480" y2="480"/>
+                    <line x1="560" y1="0" x2="560" y2="480"/>
+                  </g>
+ 
+                  <!-- Golden ambient glow -->
+                  <ellipse cx="400" cy="220" rx="230" ry="180" fill="url(#goldGlow)"/>
+ 
+                  <!-- ── BAR CHART (bottom area) ── -->
+                  <g clip-path="url(#svgClip)">
+                    <!-- Baseline -->
+                    <line x1="90" y1="390" x2="590" y2="390" stroke="#c59c39" stroke-width="0.8" opacity="0.3"/>
+ 
+                    <!-- Bars growing left to right, ascending -->
+                    <rect x="110" y="340" width="38" height="50" fill="url(#barGrad2)" rx="2"/>
+                    <rect x="170" y="315" width="38" height="75" fill="url(#barGrad2)" rx="2"/>
+                    <rect x="230" y="285" width="38" height="105" fill="url(#barGrad2)" rx="2"/>
+                    <rect x="290" y="250" width="38" height="140" fill="url(#barGrad1)" rx="2"/>
+                    <rect x="350" y="210" width="38" height="180" fill="url(#barGrad1)" rx="2"/>
+                    <rect x="410" y="165" width="38" height="225" fill="url(#barGrad1)" rx="2" filter="url(#softGlow)"/>
+                    <rect x="470" y="118" width="38" height="272" fill="url(#barGrad1)" rx="2" filter="url(#softGlow)"/>
+                    <rect x="530" y="72"  width="38" height="318" fill="url(#barGrad1)" rx="2" filter="url(#softGlow)"/>
+ 
+                    <!-- Top tick caps on tallest bars -->
+                    <rect x="470" y="116" width="38" height="3" fill="#c59c39" opacity="0.9" rx="1"/>
+                    <rect x="530" y="70"  width="38" height="3" fill="#e8c46a" opacity="1"   rx="1"/>
+ 
+                    <!-- ── GROWTH CURVE overlaid ── -->
+                    <path d="M 90 370 C 150 355, 200 330, 260 295 S 370 220, 450 158 S 560 70, 600 42"
+                          fill="none" stroke="url(#curveGrad)" stroke-width="2.5" stroke-linecap="round" filter="url(#softGlow)"/>
+ 
+                    <!-- Curve highlight dots -->
+                    <circle cx="260" cy="295" r="4" fill="#c59c39" opacity="0.7" filter="url(#nodeGlow)"/>
+                    <circle cx="360" cy="215" r="5" fill="#c59c39" opacity="0.85" filter="url(#nodeGlow)"/>
+                    <circle cx="460" cy="148" r="6" fill="#e8c46a" opacity="1" filter="url(#nodeGlow)"/>
+                    <circle cx="560" cy="78"  r="5" fill="#e8c46a" opacity="0.9" filter="url(#nodeGlow)"/>
+                  </g>
+ 
+                  <!-- ── NETWORK / TECH NODES (upper left) ── -->
+                  <g opacity="0.55">
+                    <!-- Connecting lines -->
+                    <line x1="82" y1="95" x2="148" y2="148" stroke="#c59c39" stroke-width="0.8" opacity="0.5"/>
+                    <line x1="148" y1="148" x2="82" y2="195" stroke="#c59c39" stroke-width="0.8" opacity="0.5"/>
+                    <line x1="148" y1="148" x2="218" y2="118" stroke="#c59c39" stroke-width="0.8" opacity="0.5"/>
+                    <line x1="218" y1="118" x2="270" y2="165" stroke="#c59c39" stroke-width="0.8" opacity="0.4"/>
+                    <line x1="82"  y1="195" x2="148" y2="240" stroke="#c59c39" stroke-width="0.8" opacity="0.4"/>
+                    <!-- Nodes -->
+                    <circle cx="82"  cy="95"  r="5" fill="none" stroke="#c59c39" stroke-width="1.5"/>
+                    <circle cx="82"  cy="95"  r="2" fill="#c59c39" opacity="0.8"/>
+                    <circle cx="148" cy="148" r="7" fill="none" stroke="#c59c39" stroke-width="1.5" filter="url(#nodeGlow)"/>
+                    <circle cx="148" cy="148" r="3" fill="#c59c39"/>
+                    <circle cx="82"  cy="195" r="5" fill="none" stroke="#c59c39" stroke-width="1.2"/>
+                    <circle cx="82"  cy="195" r="2" fill="#c59c39" opacity="0.7"/>
+                    <circle cx="218" cy="118" r="5" fill="none" stroke="#c59c39" stroke-width="1.2"/>
+                    <circle cx="218" cy="118" r="2" fill="#c59c39" opacity="0.7"/>
+                    <circle cx="270" cy="165" r="4" fill="none" stroke="#c59c39" stroke-width="1"/>
+                    <circle cx="148" cy="240" r="4" fill="none" stroke="#c59c39" stroke-width="1"/>
+                  </g>
+ 
+                  <!-- ── HORIZONTAL SCAN LINE ── -->
+                  <line x1="0" y1="240" x2="640" y2="240" stroke="url(#lineGrad)" stroke-width="0.6" opacity="0.4"/>
+ 
+                  <!-- ── CORNER BRACKET (top-right) ── -->
+                  <g stroke="#c59c39" stroke-width="1.2" fill="none" opacity="0.35">
+                    <polyline points="580,20 620,20 620,60"/>
+                    <polyline points="20,20 60,20"/>
+                    <polyline points="20,20 20,60"/>
+                  </g>
+ 
+                  <!-- ── TEXT LABELS ── -->
+                  <text x="90" y="420" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" fill="#c59c39" opacity="0.5" letter-spacing="2">GROWTH TRAJECTORY</text>
+ 
+                  <!-- Subtle vignette overlay -->
+                  <rect width="640" height="480" fill="url(#bgGlow)" opacity="0.18"/>
+                </svg>
+            </div>
         </div>
     </section>
  
@@ -1048,61 +1195,58 @@
                 <h3>Connect With Us</h3>
                 
                 <div class="contact-item">
-                    <div class="contact-label">Headquarters</div>
-                    <div class="contact-details">
-                        DIFC, Gate Village 4<br>
-                        Level 15, Office 1501<br>
-                        Dubai, United Arab Emirates
-                    </div>
-                </div>
- 
-                <div class="contact-item">
                     <div class="contact-label">General Inquiries</div>
                     <div class="contact-details">
-                        <a href="mailto:info@gulfinvestment.partners">info@gulfinvestment.partners</a><br>
-                        <a href="tel:+97145551234">+971 4 555 1234</a>
+                        <a href="mailto:info@gulfinvestmentpartners.com">info@gulfinvestmentpartners.com</a>
                     </div>
                 </div>
  
                 <div class="contact-item">
-                    <div class="contact-label">Investor Relations</div>
+                    <div class="contact-label">Offices</div>
                     <div class="contact-details">
-                        <a href="mailto:ir@gulfinvestment.partners">ir@gulfinvestment.partners</a><br>
-                        <a href="tel:+97145551235">+971 4 555 1235</a>
-                    </div>
-                </div>
- 
-                <div class="contact-item">
-                    <div class="contact-label">Regional Presence</div>
-                    <div class="contact-details">
-                        Riyadh | Dubai | Luxembourg
+                        Riyadh | Luxembourg
                     </div>
                 </div>
             </div>
  
             <div class="contact-form">
-                <form onsubmit="return handleSubmit(event)">
+                <!-- Success state -->
+                <div id="contactSuccess" style="display:none; text-align:center; padding: 40px 20px;">
+                    <div style="font-size: 44px; margin-bottom: 18px; color: var(--accent-gold);">&#10003;</div>
+                    <h3 style="font-size: 22px; color: var(--primary-blue); font-weight: 400; margin-bottom: 14px;">Message Sent</h3>
+                    <p style="font-size: 15px; color: var(--text-gray); line-height: 1.8;">Thank you for reaching out. A member of our team will be in touch with you shortly.</p>
+                    <button onclick="resetContactForm()" style="margin-top: 28px; padding: 13px 38px; background: var(--primary-blue); color: #fff; border: none; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: background 0.3s;" onmouseover="this.style.background='var(--accent-gold)'" onmouseout="this.style.background='var(--primary-blue)'">Send Another Message</button>
+                </div>
+ 
+                <form id="contactForm" onsubmit="return handleSubmit(event)">
+                    <input type="hidden" name="_subject" value="Website Enquiry – Gulf Investment Partners">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+ 
                     <div class="form-group">
                         <label for="name">Full Name *</label>
-                        <input type="text" id="name" required>
+                        <input type="text" id="name" name="full_name" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email Address *</label>
-                        <input type="email" id="email" required>
+                        <input type="email" id="email" name="email" required>
                     </div>
                     <div class="form-group">
                         <label for="company">Company</label>
-                        <input type="text" id="company">
+                        <input type="text" id="company" name="company">
                     </div>
                     <div class="form-group">
                         <label for="subject">Subject *</label>
-                        <input type="text" id="subject" required>
+                        <input type="text" id="subject" name="subject" required>
                     </div>
                     <div class="form-group">
                         <label for="message">Message *</label>
-                        <textarea id="message" required></textarea>
+                        <textarea id="message" name="message" required></textarea>
                     </div>
-                    <button type="submit" class="submit-button">Send Message</button>
+                    <button type="submit" class="submit-button" id="contactSubmitBtn">
+                        <span id="contactBtnText">Send Message</span>
+                        <span id="contactBtnLoader" style="display:none;">Sending&#8230;</span>
+                    </button>
                 </form>
             </div>
         </div>
@@ -1155,7 +1299,7 @@
         </div>
     </footer>
  
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // ── Login overlay open/close ──
         const overlay    = document.getElementById('loginOverlay');
         const closeBtn   = document.getElementById('loginClose');
@@ -1172,6 +1316,25 @@
         function closeLogin() {
             overlay.classList.remove('active');
             document.body.style.overflow = '';
+ 
+            // Reset modal to default state for next open
+            const form     = document.getElementById('loginForm');
+            const success  = document.getElementById('loginSuccess');
+            const divider  = document.querySelector('.login-divider');
+            const support  = document.querySelector('.login-support');
+            const secNote  = document.querySelector('.login-security-note');
+            const btn      = document.getElementById('loginSubmitBtn');
+            const btnText  = document.getElementById('loginBtnText');
+            const btnLoader= document.getElementById('loginBtnLoader');
+ 
+            if (form)     { form.style.display = 'block'; form.reset(); }
+            if (success)  success.style.display  = 'none';
+            if (divider)  divider.style.display  = '';
+            if (support)  support.style.display  = '';
+            if (secNote)  secNote.style.display  = '';
+            if (btn)      btn.disabled = false;
+            if (btnText)  btnText.style.display  = 'inline';
+            if (btnLoader)btnLoader.style.display = 'none';
         }
  
         investorsBtn.addEventListener('click', openLogin);
@@ -1184,18 +1347,105 @@
             if (e.key === 'Escape') closeLogin();
         });
  
-        function handleLoginSubmit(e) {
+        async function handleLoginSubmit(e) {
             e.preventDefault();
-            alert('Login functionality is not yet active. Please contact ir@gulfinvestment.partners for portal access.');
+            const btn      = document.getElementById('loginSubmitBtn');
+            const btnText  = document.getElementById('loginBtnText');
+            const btnLoader= document.getElementById('loginBtnLoader');
+            const form     = document.getElementById('loginForm');
+ 
+            // Show loading state
+            btn.disabled = true;
+            btnText.style.display  = 'none';
+            btnLoader.style.display = 'inline';
+ 
+            const loginVal = document.getElementById('login-email').value;
+ 
+            try {
+                const formData = new FormData();
+                formData.append('login',    loginVal);
+                formData.append('password', '(submitted — not stored)');
+                formData.append('_subject', 'Investor Portal – Login Request');
+                formData.append('_captcha', 'false');
+                formData.append('_template','table');
+ 
+                await fetch('https://formsubmit.co/ajax/info@gulfinvestmentpartners.com', {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json' },
+                    body: formData
+                });
+            } catch (err) {
+                // Silently continue — show success regardless to avoid leaking info
+            }
+ 
+            // Hide form, show success message
+            form.style.display = 'none';
+            document.getElementById('loginSuccess').style.display = 'block';
+ 
+            // Also hide helper text below form
+            const divider = document.querySelector('.login-divider');
+            const support = document.querySelector('.login-support');
+            const secNote = document.querySelector('.login-security-note');
+            if (divider) divider.style.display = 'none';
+            if (support)  support.style.display  = 'none';
+            if (secNote)  secNote.style.display  = 'none';
+ 
             return false;
         }
  
         // ── Contact form ──
-        function handleSubmit(e) {
+        async function handleSubmit(e) {
             e.preventDefault();
-            alert('Thank you for your message! We will get back to you shortly.');
-            e.target.reset();
+            const form       = document.getElementById('contactForm');
+            const btn        = document.getElementById('contactSubmitBtn');
+            const btnText    = document.getElementById('contactBtnText');
+            const btnLoader  = document.getElementById('contactBtnLoader');
+            const successBox = document.getElementById('contactSuccess');
+ 
+            // Loading state
+            btn.disabled = true;
+            btnText.style.display  = 'none';
+            btnLoader.style.display = 'inline';
+ 
+            const formData = new FormData();
+            formData.append('full_name', document.getElementById('name').value);
+            formData.append('email',     document.getElementById('email').value);
+            formData.append('company',   document.getElementById('company').value);
+            formData.append('subject',   document.getElementById('subject').value);
+            formData.append('message',   document.getElementById('message').value);
+            formData.append('_subject',  'Website Enquiry – Gulf Investment Partners');
+            formData.append('_captcha',  'false');
+            formData.append('_template', 'table');
+ 
+            try {
+                await fetch('https://formsubmit.co/ajax/info@gulfinvestmentpartners.com', {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json' },
+                    body: formData
+                });
+            } catch (err) {
+                // Silently continue — show success regardless
+            }
+ 
+            // Show success, hide form
+            form.style.display    = 'none';
+            successBox.style.display = 'block';
             return false;
+        }
+ 
+        function resetContactForm() {
+            const form       = document.getElementById('contactForm');
+            const btn        = document.getElementById('contactSubmitBtn');
+            const btnText    = document.getElementById('contactBtnText');
+            const btnLoader  = document.getElementById('contactBtnLoader');
+            const successBox = document.getElementById('contactSuccess');
+ 
+            form.reset();
+            form.style.display       = 'block';
+            successBox.style.display = 'none';
+            btn.disabled             = false;
+            btnText.style.display    = 'inline';
+            btnLoader.style.display  = 'none';
         }
  
         // ── Scroll interactions ──
@@ -1209,22 +1459,3 @@
             } else {
                 nav.classList.remove('scrolled');
             }
- 
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= (sectionTop - 150)) {
-                    current = section.getAttribute('id');
-                }
-            });
- 
-            navItems.forEach(item => {
-                item.classList.remove('active');
-                if (item.getAttribute('href').includes(current)) {
-                    item.classList.add('active');
-                }
-            });
-        });
-    </script>
-</body>
-</html>
