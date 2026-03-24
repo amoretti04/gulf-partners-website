@@ -12,15 +12,19 @@
         }
 
         :root {
-            /* Updated to match the GIP Logo colors for a highly professional look */
-            --primary-black: #0f172a; /* Slate 900 */
+            --primary-black: #0f172a; 
             --secondary-black: #1e293b; 
-            --primary-blue: #1b2a53; /* Logo Navy Blue */
-            --accent-gold: #c59c39; /* Logo Gold/Mustard */
+            --primary-blue: #1b2a53; 
+            --accent-gold: #c59c39; 
             --white: #ffffff;
             --light-gray: #f8fafc;
             --border-color: #e2e8f0;
             --text-gray: #475569;
+        }
+
+        /* Enables smooth scrolling across the whole page */
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -56,7 +60,7 @@
         }
 
         .logo-img {
-            max-height: 55px; /* Adjust based on your preference */
+            max-height: 55px; 
             width: auto;
             display: block;
         }
@@ -83,29 +87,16 @@
             color: var(--accent-gold);
         }
 
-        /* Page Container */
-        .page {
-            display: none;
+        /* Page Sections */
+        /* Scroll-margin-top ensures the fixed header doesn't overlap the section title when scrolling */
+        .page-section {
+            scroll-margin-top: 85px; 
             min-height: 100vh;
-            padding-top: 85px;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .page.active {
-            display: block;
-            opacity: 1;
-            animation: fadeIn 0.5s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Hero Section */
         .hero {
-            height: 85vh;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -113,6 +104,7 @@
             color: var(--white);
             position: relative;
             overflow: hidden;
+            padding-top: 85px; /* Offset for nav */
         }
 
         .hero::before {
@@ -283,7 +275,7 @@
             line-height: 1.8;
         }
 
-        /* Target Sectors Grid (Replaced Portfolio) */
+        /* Target Sectors Grid */
         .sectors-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -486,7 +478,7 @@
         }
         .footer-section img {
             max-height: 40px;
-            filter: brightness(0) invert(1); /* Makes logo white for footer */
+            filter: brightness(0) invert(1);
             margin-bottom: 25px;
         }
         .footer-section h4 {
@@ -531,8 +523,8 @@
             .footer-content { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 768px) {
-            .nav-links { display: none; /* Add hamburger menu logic for real site */ }
-            .hero { height: 70vh; }
+            .nav-links { display: none; }
+            .hero { height: auto; padding: 150px 20px 80px; }
             .hero h1 { font-size: 36px; }
             .section { padding: 80px 20px; }
             .section-title { font-size: 32px; }
@@ -546,319 +538,306 @@
 
     <nav id="nav">
         <div class="nav-container">
-            <a href="#" onclick="navigateTo('home')">
+            <a href="#home">
                 <img src="GIP logo.png" alt="Gulf Investment Partners" class="logo-img">
             </a>
             
             <ul class="nav-links">
-                <li><a href="#" data-page="home" class="active">Home</a></li>
-                <li><a href="#" data-page="approach">Approach</a></li>
-                <li><a href="#" data-page="team">Team</a></li>
-                <li><a href="#" data-page="sectors">Target Sectors</a></li>
-                <li><a href="#" data-page="contact">Contact</a></li>
+                <li><a href="#home" class="nav-item active">Home</a></li>
+                <li><a href="#approach" class="nav-item">Approach</a></li>
+                <li><a href="#team" class="nav-item">Team</a></li>
+                <li><a href="#sectors" class="nav-item">Target Sectors</a></li>
+                <li><a href="#contact" class="nav-item">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <div id="home" class="page active">
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Multiplying <strong>Potential</strong><br>Through Strategic Capital</h1>
-                <p>We partner with visionary leaders to unlock sustainable growth and create enduring value across global markets, bridging EMEA platforms with GCC transformation priorities.</p>
-                <a href="#" class="cta-button" onclick="navigateTo('contact')">Connect With Us</a>
-            </div>
-        </section>
+    <section id="home" class="page-section hero">
+        <div class="hero-content">
+            <h1>Multiplying <strong>Potential</strong><br>Through Strategic Capital</h1>
+            <p>We partner with visionary leaders to unlock sustainable growth and create enduring value across global markets, bridging EMEA platforms with GCC transformation priorities.</p>
+            <a href="#contact" class="cta-button">Connect With Us</a>
+        </div>
+    </section>
 
-        <section class="section">
+    <section class="section">
+        <div class="section-header">
+            <div class="section-label">Who We Are</div>
+            <h2 class="section-title">Building Tomorrow's Market Leaders</h2>
+            <p class="section-description">
+                Gulf Investment Partners is a leading private capital advisory firm specializing in strategic investments across the Gulf region and international markets. We combine deep sector expertise with an entrepreneurial approach to connect proven EMEA business models with some of the most attractive long-term demand pools in the region.
+            </p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">$200M</div>
+                <div class="stat-label">Assets Under Management</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">10-12</div>
+                <div class="stat-label">Target Portfolio Companies</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">20</div>
+                <div class="stat-label">Years of Excellence</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2</div>
+                <div class="stat-label">Global Offices</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured">
+        <div class="section" style="padding-bottom: 0;">
             <div class="section-header">
-                <div class="section-label">Who We Are</div>
-                <h2 class="section-title">Building Tomorrow's Market Leaders</h2>
-                <p class="section-description">
-                    Gulf Investment Partners is a leading private capital advisory firm specializing in strategic investments across the Gulf region and international markets. We combine deep sector expertise with an entrepreneurial approach to connect proven EMEA business models with some of the most attractive long-term demand pools in the region.
+                <div class="section-label">Our Focus</div>
+                <h2 class="section-title">Investment Strategies</h2>
+            </div>
+        </div>
+        <div class="featured-grid">
+            <div class="featured-item">
+                <div class="featured-number">01</div>
+                <h3 class="featured-title">Growth Capital</h3>
+                <p class="featured-description">
+                    Providing strategic capital to established businesses seeking to accelerate expansion, enter new markets, or pursue transformative acquisitions across the GCC and EMEA.
                 </p>
             </div>
-
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number">$5.2B</div>
-                    <div class="stat-label">Assets Under Management</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">120+</div>
-                    <div class="stat-label">Portfolio Companies</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">18</div>
-                    <div class="stat-label">Years of Excellence</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">15</div>
-                    <div class="stat-label">Global Offices</div>
-                </div>
-            </div>
-        </section>
-
-        <section class="featured">
-            <div class="section" style="padding-bottom: 0;">
-                <div class="section-header">
-                    <div class="section-label">Our Focus</div>
-                    <h2 class="section-title">Investment Strategies</h2>
-                </div>
-            </div>
-            <div class="featured-grid">
-                <div class="featured-item">
-                    <div class="featured-number">01</div>
-                    <h3 class="featured-title">Growth Capital</h3>
-                    <p class="featured-description">
-                        Providing strategic capital to established businesses seeking to accelerate expansion, enter new markets, or pursue transformative acquisitions across the GCC and EMEA.
-                    </p>
-                </div>
-                <div class="featured-item">
-                    <div class="featured-number">02</div>
-                    <h3 class="featured-title">Buyout Investments</h3>
-                    <p class="featured-description">
-                        Preferred structured capital fund that invests in market-leading businesses with strong fundamentals and significant value creation potential, to selectively capture opportunities arising from the GCC economic transformation and sustainability agenda.
-                    </p>
-                </div>
-                <div class="featured-item">
-                    <div class="featured-number">03</div>
-                    <h3 class="featured-title">Venture Capital</h3>
-                    <p class="featured-description">
-                        Scale-up growth-stage investments in innovative technology companies—particularly leveraging digital tools, data infrastructure, and AI—that are reshaping industries and creating new markets.
-                    </p>
-                </div>
-                <div class="featured-item">
-                    <div class="featured-number">04</div>
-                    <h3 class="featured-title">Real Assets</h3>
-                    <p class="featured-description">
-                        Strategic investments in infrastructure, real estate, and tangible assets that provide stable returns, portfolio diversification, and directly support national resilience priorities.
-                    </p>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="approach" class="page">
-        <section class="section">
-            <div class="section-header">
-                <div class="section-label">Our Approach</div>
-                <h2 class="section-title">Value Creation Through Partnership</h2>
-                <p class="section-description">
-                    Our strategy is centered on scalable, capital-light, and profitable businesses operating in sectors supported by strong structural tailwinds. We believe that sustainable value creation requires deep collaboration, operational enhancement, and technology-led business transformation.
+            <div class="featured-item">
+                <div class="featured-number">02</div>
+                <h3 class="featured-title">Buyout Investments</h3>
+                <p class="featured-description">
+                    Preferred structured capital fund that invests in market-leading businesses with strong fundamentals and significant value creation potential, to selectively capture opportunities arising from the GCC economic transformation and sustainability agenda.
                 </p>
             </div>
-
-            <div class="pillars">
-                <div class="pillar">
-                    <div class="pillar-number">01</div>
-                    <h3 class="pillar-title">Strategic Expansion</h3>
-                    <p class="pillar-description">
-                        We target market leaders with defensible competitive positions, leveraging our deep network to accelerate their growth through strategic expansion into high-demand GCC markets.
-                    </p>
-                </div>
-                <div class="pillar">
-                    <div class="pillar-number">02</div>
-                    <h3 class="pillar-title">Operational Excellence</h3>
-                    <p class="pillar-description">
-                        We work alongside portfolio companies to drive operational improvements, implement best practices, and enhance commercial effectiveness to support sustainable margin expansion.
-                    </p>
-                </div>
-                <div class="pillar">
-                    <div class="pillar-number">03</div>
-                    <h3 class="pillar-title">Tech & AI Integration</h3>
-                    <p class="pillar-description">
-                        We seek to leverage innovation in digital tools, data infrastructure, automation, and generative AI to improve productivity and strengthen decision-making across the portfolio.
-                    </p>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="team" class="page">
-        <section class="section">
-            <div class="section-header">
-                <div class="section-label">Our People</div>
-                <h2 class="section-title">Experience Meets Innovation</h2>
-                <p class="section-description">
-                    Our team brings together decades of cross-border investment experience with fresh perspectives. United by a commitment to excellence and a passion for building exceptional businesses, we are trusted partners to entrepreneurs, family offices, and institutions worldwide.
+            <div class="featured-item">
+                <div class="featured-number">03</div>
+                <h3 class="featured-title">Venture Capital</h3>
+                <p class="featured-description">
+                    Scale-up growth-stage investments in innovative technology companies—particularly leveraging digital tools, data infrastructure, and AI—that are reshaping industries and creating new markets.
                 </p>
             </div>
-
-            <div style="margin-top: 80px; text-align: center; padding: 60px; background: var(--light-gray); border: 1px solid var(--border-color);">
-                <h3 style="font-size: 24px; color: var(--primary-blue); margin-bottom: 20px;">Careers at Gulf Investment Partners</h3>
-                <p style="color: var(--text-gray); margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">We are always looking for talented professionals driven by excellence who want to make a meaningful impact in the region's economic transformation.</p>
-                <a href="#" class="cta-button" onclick="navigateTo('contact')">Explore Opportunities</a>
+            <div class="featured-item">
+                <div class="featured-number">04</div>
+                <h3 class="featured-title">Real Assets</h3>
+                <p class="featured-description">
+                    Strategic investments in infrastructure, real estate, and tangible assets that provide stable returns, portfolio diversification, and directly support national resilience priorities.
+                </p>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 
-    <div id="sectors" class="page">
-        <section class="section" style="background: var(--light-gray);">
+    <section id="approach" class="page-section section">
+        <div class="section-header">
+            <div class="section-label">Our Approach</div>
+            <h2 class="section-title">Value Creation Through Partnership</h2>
+            <p class="section-description">
+                Our strategy is centered on scalable, capital-light, and profitable businesses operating in sectors supported by strong structural tailwinds. We believe that sustainable value creation requires deep collaboration, operational enhancement, and technology-led business transformation.
+            </p>
+        </div>
+
+        <div class="pillars">
+            <div class="pillar">
+                <div class="pillar-number">01</div>
+                <h3 class="pillar-title">Strategic Expansion</h3>
+                <p class="pillar-description">
+                    We target market leaders with defensible competitive positions, leveraging our deep network to accelerate their growth through strategic expansion into high-demand GCC markets.
+                </p>
+            </div>
+            <div class="pillar">
+                <div class="pillar-number">02</div>
+                <h3 class="pillar-title">Operational Excellence</h3>
+                <p class="pillar-description">
+                    We work alongside portfolio companies to drive operational improvements, implement best practices, and enhance commercial effectiveness to support sustainable margin expansion.
+                </p>
+            </div>
+            <div class="pillar">
+                <div class="pillar-number">03</div>
+                <h3 class="pillar-title">Tech & AI Integration</h3>
+                <p class="pillar-description">
+                    We seek to leverage innovation in digital tools, data infrastructure, automation, and generative AI to improve productivity and strengthen decision-making across the portfolio.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="page-section section">
+        <div class="section-header">
+            <div class="section-label">Our People</div>
+            <h2 class="section-title">Experience Meets Innovation</h2>
+            <p class="section-description">
+                Our team brings together decades of cross-border investment experience with fresh perspectives. United by a commitment to excellence and a passion for building exceptional businesses, we are trusted partners to entrepreneurs, family offices, and institutions worldwide.
+            </p>
+        </div>
+
+        <div style="margin-top: 80px; text-align: center; padding: 60px; background: var(--light-gray); border: 1px solid var(--border-color);">
+            <h3 style="font-size: 24px; color: var(--primary-blue); margin-bottom: 20px;">Careers at Gulf Investment Partners</h3>
+            <p style="color: var(--text-gray); margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">We are always looking for talented professionals driven by excellence who want to make a meaningful impact in the region's economic transformation.</p>
+            <a href="#contact" class="cta-button">Explore Opportunities</a>
+        </div>
+    </section>
+
+    <section id="sectors" class="page-section" style="background: var(--light-gray);">
+        <div class="section">
             <div class="section-header">
                 <div class="section-label">Investment Thesis</div>
                 <h2 class="section-title">Target Sectors & Strategy</h2>
                 <p class="section-description">
-                    The Fund pursues a differentiated cross-border strategy focused on investing in selected niche SMEs across EMEA whose products and services are directly relevant to the long-term transformation of GCC economies[cite: 2].
+                    The Fund pursues a differentiated cross-border strategy focused on investing in selected niche SMEs across EMEA whose products and services are directly relevant to the long-term transformation of GCC economies.
                 </p>
             </div>
 
             <div class="sectors-grid">
-                
                 <div class="sector-card">
                     <div class="sector-icon">&#x1F4A7;</div>
                     <h3 class="sector-title">Water & Resource Efficiency</h3>
                     <p class="sector-desc">
-                        Target specialist SMEs in water treatment, reuse, monitoring, leakage detection, and industrial water-efficiency technologies. Water security is a strategic priority for GCC economies, creating a compelling opportunity for proven EMEA platforms[cite: 1].
+                        Target specialist SMEs in water treatment, reuse, monitoring, leakage detection, and industrial water-efficiency technologies. Water security is a strategic priority for GCC economies, creating a compelling opportunity for proven EMEA platforms.
                     </p>
                 </div>
-
                 <div class="sector-card">
                     <div class="sector-icon">&#x267B;&#xFE0F;</div>
                     <h3 class="sector-title">Circular Economy & Waste Valorization</h3>
                     <p class="sector-desc">
-                        Focus on businesses active in recycling, packaging circularity, industrial waste recovery, and resource-efficiency services. Attractive companies have proprietary processes, contracted relationships, and the ability to expand through replication[cite: 1].
+                        Focus on businesses active in recycling, packaging circularity, industrial waste recovery, and resource-efficiency services. Attractive companies have proprietary processes, contracted relationships, and the ability to expand through replication.
                     </p>
                 </div>
-
                 <div class="sector-card">
                     <div class="sector-icon">&#x1F331;</div>
                     <h3 class="sector-title">Sustainable Food & Agri Solutions</h3>
                     <p class="sector-desc">
-                        Back specialist platforms supporting food security through precision irrigation, controlled-environment agriculture, and food supply-chain technology. The strongest opportunities are technology-enabled models with repeat revenues[cite: 1].
+                        Back specialist platforms supporting food security through precision irrigation, controlled-environment agriculture, and food supply-chain technology. The strongest opportunities are technology-enabled models with repeat revenues.
                     </p>
                 </div>
-
                 <div class="sector-card">
                     <div class="sector-icon">&#x1F3E5;</div>
                     <h3 class="sector-title">Healthcare Services & HealthTech</h3>
                     <p class="sector-desc">
-                        Invest in focused healthcare platforms that improve access and outcomes, including diagnostics, digital health, and specialty care. Ideal targets are niche leaders with the ability to drive sustainable margin expansion through digital adoption[cite: 1].
+                        Invest in focused healthcare platforms that improve access and outcomes, including diagnostics, digital health, and specialty care. Ideal targets are niche leaders with the ability to drive sustainable margin expansion through digital adoption.
                     </p>
                 </div>
-
                 <div class="sector-card">
                     <div class="sector-icon">&#x1F6A2;</div>
                     <h3 class="sector-title">Logistics Tech & Supply Chain</h3>
                     <p class="sector-desc">
-                        Focus on asset-light supply chain platforms, including warehouse solutions, fleet optimization, last-mile orchestration, and trade-support services. Target companies demonstrate embedded customer relationships and strong scalability[cite: 1].
+                        Focus on asset-light supply chain platforms, including warehouse solutions, fleet optimization, last-mile orchestration, and trade-support services. Target companies demonstrate embedded customer relationships and strong scalability.
                     </p>
                 </div>
-
                 <div class="sector-card">
                     <div class="sector-icon">&#x2699;&#xFE0F;</div>
                     <h3 class="sector-title">Industrial Tech & Smart Manufacturing</h3>
                     <p class="sector-desc">
-                        Back specialist providers of automation, industrial software, sensor-based quality control, and maintenance solutions that support productivity and localization in industrial value chains, aligning with GCC diversification ambitions[cite: 1].
+                        Back specialist providers of automation, industrial software, sensor-based quality control, and maintenance solutions that support productivity and localization in industrial value chains, aligning with GCC diversification ambitions.
                     </p>
                 </div>
-
             </div>
-        </section>
+        </div>
         
-        <section class="section" style="background: var(--primary-blue); color: var(--white);">
-            <div class="section-header">
-                <div class="section-label" style="color: var(--accent-gold);">Investment Impact</div>
-                <h2 class="section-title" style="color: var(--white);">Creating Lasting Value</h2>
-                <p class="section-description" style="color: rgba(255,255,255,0.8);">
-                    Sustainability acts as both a value-creation lens and a demand driver for our investments[cite: 3]. Through active partnership and operational support, we help these businesses achieve extraordinary growth while aligning with regional transformation mandates.
-                </p>
-            </div>
-            <div class="stats-grid">
-                <div class="stat-item" style="border-top-color: var(--accent-gold);">
-                    <div class="stat-number" style="color: var(--accent-gold);">3.2x</div>
-                    <div class="stat-label" style="color: rgba(255,255,255,0.7);">Average MOIC</div>
+        <div class="section" style="background: var(--primary-blue); color: var(--white); max-width: 100%;">
+            <div style="max-width: 1400px; margin: 0 auto;">
+                <div class="section-header">
+                    <div class="section-label" style="color: var(--accent-gold);">Investment Impact</div>
+                    <h2 class="section-title" style="color: var(--white);">Creating Lasting Value</h2>
+                    <p class="section-description" style="color: rgba(255,255,255,0.8);">
+                        Sustainability acts as both a value-creation lens and a demand driver for our investments. Through active partnership and operational support, we help these businesses achieve extraordinary growth while aligning with regional transformation mandates.
+                    </p>
                 </div>
-                <div class="stat-item" style="border-top-color: var(--accent-gold);">
-                    <div class="stat-number" style="color: var(--accent-gold);">42%</div>
-                    <div class="stat-label" style="color: rgba(255,255,255,0.7);">Revenue Growth (Avg)</div>
-                </div>
-                <div class="stat-item" style="border-top-color: var(--accent-gold);">
-                    <div class="stat-number" style="color: var(--accent-gold);">65+</div>
-                    <div class="stat-label" style="color: rgba(255,255,255,0.7);">Successful Exits</div>
-                </div>
-                <div class="stat-item" style="border-top-color: var(--accent-gold);">
-                    <div class="stat-number" style="color: var(--accent-gold);">28%</div>
-                    <div class="stat-label" style="color: rgba(255,255,255,0.7);">IRR (Net)</div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="contact" class="page">
-        <section class="section">
-            <div class="section-header">
-                <div class="section-label">Get in Touch</div>
-                <h2 class="section-title">Let's Start a Conversation</h2>
-                <p class="section-description">
-                    Whether you are an EMEA company seeking strategic GCC expansion, an investor interested in our funds, or a talented professional exploring opportunities, we welcome the dialogue.
-                </p>
-            </div>
-
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Connect With Us</h3>
-                    
-                    <div class="contact-item">
-                        <div class="contact-label">Headquarters</div>
-                        <div class="contact-details">
-                            DIFC, Gate Village 4<br>
-                            Level 15, Office 1501<br>
-                            Dubai, United Arab Emirates
-                        </div>
+                <div class="stats-grid">
+                    <div class="stat-item" style="border-top-color: var(--accent-gold);">
+                        <div class="stat-number" style="color: var(--accent-gold);">3.2x</div>
+                        <div class="stat-label" style="color: rgba(255,255,255,0.7);">Average MOIC</div>
                     </div>
-
-                    <div class="contact-item">
-                        <div class="contact-label">General Inquiries</div>
-                        <div class="contact-details">
-                            <a href="mailto:info@gulfinvestment.partners">info@gulfinvestment.partners</a><br>
-                            <a href="tel:+97145551234">+971 4 555 1234</a>
-                        </div>
+                    <div class="stat-item" style="border-top-color: var(--accent-gold);">
+                        <div class="stat-number" style="color: var(--accent-gold);">42%</div>
+                        <div class="stat-label" style="color: rgba(255,255,255,0.7);">Revenue Growth (Avg)</div>
                     </div>
-
-                    <div class="contact-item">
-                        <div class="contact-label">Investor Relations</div>
-                        <div class="contact-details">
-                            <a href="mailto:ir@gulfinvestment.partners">ir@gulfinvestment.partners</a><br>
-                            <a href="tel:+97145551235">+971 4 555 1235</a>
-                        </div>
+                    <div class="stat-item" style="border-top-color: var(--accent-gold);">
+                        <div class="stat-number" style="color: var(--accent-gold);">65+</div>
+                        <div class="stat-label" style="color: rgba(255,255,255,0.7);">Successful Exits</div>
                     </div>
+                    <div class="stat-item" style="border-top-color: var(--accent-gold);">
+                        <div class="stat-number" style="color: var(--accent-gold);">28%</div>
+                        <div class="stat-label" style="color: rgba(255,255,255,0.7);">IRR (Net)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    <div class="contact-item">
-                        <div class="contact-label">Regional Presence</div>
-                        <div class="contact-details">
-                            Riyadh | Dubai | Luxembourg
-                        </div>
+    <section id="contact" class="page-section section">
+        <div class="section-header">
+            <div class="section-label">Get in Touch</div>
+            <h2 class="section-title">Let's Start a Conversation</h2>
+            <p class="section-description">
+                Whether you are an EMEA company seeking strategic GCC expansion, an investor interested in our funds, or a talented professional exploring opportunities, we welcome the dialogue.
+            </p>
+        </div>
+
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Connect With Us</h3>
+                
+                <div class="contact-item">
+                    <div class="contact-label">Headquarters</div>
+                    <div class="contact-details">
+                        DIFC, Gate Village 4<br>
+                        Level 15, Office 1501<br>
+                        Dubai, United Arab Emirates
                     </div>
                 </div>
 
-                <div class="contact-form">
-                    <form onsubmit="return handleSubmit(event)">
-                        <div class="form-group">
-                            <label for="name">Full Name *</label>
-                            <input type="text" id="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="company">Company</label>
-                            <input type="text" id="company">
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject *</label>
-                            <input type="text" id="subject" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message *</label>
-                            <textarea id="message" required></textarea>
-                        </div>
-                        <button type="submit" class="submit-button">Send Message</button>
-                    </form>
+                <div class="contact-item">
+                    <div class="contact-label">General Inquiries</div>
+                    <div class="contact-details">
+                        <a href="mailto:info@gulfinvestment.partners">info@gulfinvestment.partners</a><br>
+                        <a href="tel:+97145551234">+971 4 555 1234</a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-label">Investor Relations</div>
+                    <div class="contact-details">
+                        <a href="mailto:ir@gulfinvestment.partners">ir@gulfinvestment.partners</a><br>
+                        <a href="tel:+97145551235">+971 4 555 1235</a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-label">Regional Presence</div>
+                    <div class="contact-details">
+                        Riyadh | Dubai | Luxembourg
+                    </div>
                 </div>
             </div>
-        </section>
-    </div>
+
+            <div class="contact-form">
+                <form onsubmit="return handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <input type="text" id="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
     <footer>
         <div class="footer-content">
@@ -872,22 +851,22 @@
             <div class="footer-section">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="#" onclick="navigateTo('home')">Home</a></li>
-                    <li><a href="#" onclick="navigateTo('approach')">Approach</a></li>
-                    <li><a href="#" onclick="navigateTo('team')">Team</a></li>
-                    <li><a href="#" onclick="navigateTo('sectors')">Target Sectors</a></li>
-                    <li><a href="#" onclick="navigateTo('contact')">Contact</a></li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#approach">Approach</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#sectors">Target Sectors</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
 
             <div class="footer-section">
                 <h4>Sectors</h4>
                 <ul>
-                    <li><a href="#" onclick="navigateTo('sectors')">Water & Resource Efficiency</a></li>
-                    <li><a href="#" onclick="navigateTo('sectors')">Circular Economy</a></li>
-                    <li><a href="#" onclick="navigateTo('sectors')">Sustainable Food & Agri</a></li>
-                    <li><a href="#" onclick="navigateTo('sectors')">Healthcare Services</a></li>
-                    <li><a href="#" onclick="navigateTo('sectors')">Logistics Tech</a></li>
+                    <li><a href="#sectors">Water & Resource Efficiency</a></li>
+                    <li><a href="#sectors">Circular Economy</a></li>
+                    <li><a href="#sectors">Sustainable Food & Agri</a></li>
+                    <li><a href="#sectors">Healthcare Services</a></li>
+                    <li><a href="#sectors">Logistics Tech</a></li>
                 </ul>
             </div>
 
@@ -908,57 +887,7 @@
     </footer>
 
     <script>
-        // Navigation functionality
-        const navLinks = document.querySelectorAll('.nav-links a');
-        const pages = document.querySelectorAll('.page');
-        const nav = document.getElementById('nav');
-
-        function navigateTo(pageId) {
-            // Remove active class from all nav links
-            navLinks.forEach(link => link.classList.remove('active'));
-            
-            // Hide all pages
-            pages.forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Show selected page
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
-                
-                // Update active nav link
-                const activeLink = document.querySelector(`[data-page="${pageId}"]`);
-                if (activeLink) {
-                    activeLink.classList.add('active');
-                }
-                
-                // Scroll to top
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-            
-            return false;
-        }
-
-        // Set up navigation click handlers
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const pageId = link.getAttribute('data-page');
-                navigateTo(pageId);
-            });
-        });
-
-        // Scroll effect for nav
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
-
-        // Form submission
+        // Form submission handler
         function handleSubmit(e) {
             e.preventDefault();
             alert('Thank you for your message! We will get back to you shortly.');
@@ -966,932 +895,37 @@
             return false;
         }
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            // Set home as active page
-            navigateTo('home');
-        });
-    </script>
-</body>
-</html>        }
-
-        .logo-img {
-            max-height: 55px; /* Adjust based on your preference */
-            width: auto;
-            display: block;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 45px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--primary-black);
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 500;
-            transition: color 0.3s;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--accent-gold);
-        }
-
-        /* Page Container */
-        .page {
-            display: none;
-            min-height: 100vh;
-            padding-top: 85px;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .page.active {
-            display: block;
-            opacity: 1;
-            animation: fadeIn 0.5s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 85vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--primary-blue);
-            color: var(--white);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(135deg, rgba(27,42,83,0.95) 0%, rgba(15,23,42,1) 100%);
-            z-index: 0;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            max-width: 1000px;
-            padding: 0 40px;
-        }
-
-        .hero h1 {
-            font-size: 64px;
-            font-weight: 300;
-            margin-bottom: 30px;
-            letter-spacing: -1px;
-            line-height: 1.1;
-        }
-
-        .hero h1 strong {
-            font-weight: 600;
-            color: var(--accent-gold);
-        }
-
-        .hero p {
-            font-size: 20px;
-            font-weight: 300;
-            margin-bottom: 50px;
-            opacity: 0.9;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 18px 50px;
-            background: var(--accent-gold);
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 15px;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 2px solid var(--accent-gold);
-        }
-
-        .cta-button:hover {
-            background: transparent;
-            color: var(--accent-gold);
-        }
-
-        /* Section Styles */
-        .section {
-            padding: 120px 40px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            max-width: 800px;
-            margin-bottom: 60px;
-        }
-
-        .section-label {
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--accent-gold);
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-
-        .section-title {
-            font-size: 42px;
-            font-weight: 300;
-            color: var(--primary-blue);
-            margin-bottom: 30px;
-            letter-spacing: -1px;
-        }
-
-        .section-description {
-            font-size: 18px;
-            color: var(--text-gray);
-            line-height: 1.8;
-        }
-
-        /* Stats Section */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 60px;
-            padding: 60px 0;
-        }
-
-        .stat-item {
-            text-align: center;
-            border-top: 2px solid var(--accent-gold);
-            padding-top: 30px;
-        }
-
-        .stat-number {
-            font-size: 56px;
-            font-weight: 300;
-            color: var(--primary-blue);
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
-            font-size: 14px;
-            color: var(--text-gray);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 500;
-        }
-
-        /* Featured Focus Grid */
-        .featured { background: var(--light-gray); }
-        .featured-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2px;
-            background: var(--border-color);
-        }
-        .featured-item {
-            background: var(--white);
-            padding: 80px 60px;
-            transition: all 0.4s ease;
-            position: relative;
-        }
-        .featured-item::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 4px; height: 0;
-            background: var(--accent-gold);
-            transition: height 0.4s ease;
-        }
-        .featured-item:hover::before { height: 100%; }
-        .featured-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            z-index: 1;
-        }
-        .featured-number {
-            font-size: 14px;
-            color: var(--accent-gold);
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-        .featured-title {
-            font-size: 26px;
-            font-weight: 400;
-            color: var(--primary-blue);
-            margin-bottom: 20px;
-        }
-        .featured-description {
-            font-size: 16px;
-            color: var(--text-gray);
-            line-height: 1.8;
-        }
-
-        /* Target Sectors Grid (Replaced Portfolio) */
-        .sectors-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-        }
-        
-        .sector-card {
-            background: var(--white);
-            border: 1px solid var(--border-color);
-            padding: 50px 40px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .sector-card::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0;
-            width: 100%; height: 3px;
-            background: var(--accent-gold);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-
-        .sector-card:hover::after {
-            transform: scaleX(1);
-        }
-
-        .sector-card:hover {
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
-            transform: translateY(-5px);
-        }
-
-        .sector-icon {
-            font-size: 32px;
-            color: var(--accent-gold);
-            margin-bottom: 25px;
-        }
-
-        .sector-title {
-            font-size: 24px;
-            font-weight: 500;
-            color: var(--primary-blue);
-            margin-bottom: 20px;
-            line-height: 1.3;
-        }
-
-        .sector-desc {
-            font-size: 16px;
-            color: var(--text-gray);
-            line-height: 1.7;
-        }
-
-        /* Approach Pillars */
-        .pillars {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 40px;
-        }
-        .pillar {
-            padding: 60px 50px;
-            background: var(--white);
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-        .pillar:hover {
-            background: var(--primary-blue);
-        }
-        .pillar:hover .pillar-number,
-        .pillar:hover .pillar-title,
-        .pillar:hover .pillar-description {
-            color: var(--white);
-        }
-        .pillar:hover .pillar-number {
-            color: var(--accent-gold);
-        }
-        .pillar-number {
-            font-size: 60px;
-            font-weight: 300;
-            color: var(--accent-gold);
-            margin-bottom: 20px;
-            transition: color 0.3s ease;
-        }
-        .pillar-title {
-            font-size: 22px;
-            font-weight: 500;
-            color: var(--primary-blue);
-            margin-bottom: 20px;
-            transition: color 0.3s ease;
-        }
-        .pillar-description {
-            font-size: 15px;
-            color: var(--text-gray);
-            line-height: 1.8;
-            transition: color 0.3s ease;
-        }
-
-        /* Contact Section */
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 100px;
-            align-items: start;
-        }
-        .contact-info h3 {
-            font-size: 32px;
-            font-weight: 400;
-            margin-bottom: 40px;
-            color: var(--primary-blue);
-        }
-        .contact-item { margin-bottom: 40px; }
-        .contact-label {
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--accent-gold);
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        .contact-details {
-            font-size: 18px;
-            color: var(--primary-black);
-            line-height: 1.8;
-        }
-        .contact-details a {
-            color: var(--primary-black);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        .contact-details a:hover { color: var(--accent-gold); }
-        
-        .contact-form {
-            background: var(--light-gray);
-            padding: 50px;
-            border-radius: 4px;
-        }
-        .form-group { margin-bottom: 25px; }
-        .form-group label {
-            display: block;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--primary-black);
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid var(--border-color);
-            background: var(--white);
-            font-family: inherit;
-            font-size: 16px;
-            transition: border-color 0.3s;
-            border-radius: 2px;
-        }
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-blue);
-        }
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-        .submit-button {
-            width: 100%;
-            padding: 18px;
-            background: var(--primary-blue);
-            color: var(--white);
-            border: none;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .submit-button:hover {
-            background: var(--accent-gold);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--primary-blue);
-            color: var(--white);
-            padding: 80px 40px 40px;
-        }
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 60px;
-            margin-bottom: 60px;
-        }
-        .footer-section img {
-            max-height: 40px;
-            filter: brightness(0) invert(1); /* Makes logo white for footer */
-            margin-bottom: 25px;
-        }
-        .footer-section h4 {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 25px;
-            color: var(--white);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .footer-section p {
-            font-size: 15px;
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.8;
-        }
-        .footer-section ul { list-style: none; }
-        .footer-section ul li { margin-bottom: 15px; }
-        .footer-section a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            font-size: 15px;
-            transition: color 0.3s;
-        }
-        .footer-section a:hover { color: var(--accent-gold); }
-        .footer-bottom {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .hero h1 { font-size: 48px; }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .featured-grid, .sectors-grid { grid-template-columns: 1fr; }
-            .pillars { grid-template-columns: 1fr; }
-            .contact-container { grid-template-columns: 1fr; gap: 60px; }
-            .footer-content { grid-template-columns: 1fr 1fr; }
-        }
-        @media (max-width: 768px) {
-            .nav-links { display: none; /* Add hamburger menu logic for real site */ }
-            .hero { height: 70vh; }
-            .hero h1 { font-size: 36px; }
-            .section { padding: 80px 20px; }
-            .section-title { font-size: 32px; }
-            .stats-grid { grid-template-columns: 1fr; gap: 40px; }
-            .contact-form { padding: 30px; }
-            .footer-content { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-
-    <nav id="nav">
-        <div class="nav-container">
-            <a href="#" onclick="navigateTo('home')">
-                <img src="GIP logo.png" alt="Gulf Investment Partners" class="logo-img">
-            </a>
-            
-            <ul class="nav-links">
-                <li><a href="#" data-page="home" class="active">Home</a></li>
-                <li><a href="#" data-page="approach">Approach</a></li>
-                <li><a href="#" data-page="team">Team</a></li>
-                <li><a href="#" data-page="sectors">Target Sectors</a></li>
-                <li><a href="#" data-page="contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <div id="home" class="page active">
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Multiplying <strong>Potential</strong><br>Through Strategic Capital</h1>
-                <p>We partner with visionary leaders to unlock sustainable growth and create enduring value across global markets, bridging EMEA platforms with GCC transformation priorities.</p>
-                <a href="#" class="cta-button" onclick="navigateTo('contact')">Connect With Us</a>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="section-header">
-                <div class="section-label">Who We Are</div>
-                <h2 class="section-title">Building Tomorrow's Market Leaders</h2>
-                <p class="section-description">
-                    Gulf Investment Partners is a leading private capital advisory firm specializing in strategic investments across the Gulf region and international markets. We combine deep sector expertise with an entrepreneurial approach to connect proven EMEA business models with some of the most attractive long-term demand pools in the region.
-                </p>
-            </div>
-
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number">$5.2B</div>
-                    <div class="stat-label">Assets Under Management</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">120+</div>
-                    <div class="stat-label">Portfolio Companies</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">18</div>
-                    <div class="stat-label">Years of Excellence</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">15</div>
-                    <div class="stat-label">Global Offices</div>
-                </div>
-            </div>
-        </section>
-
-        <section class="featured">
-            <div class="section" style="padding-bottom: 0;">
-                <div class="section-header">
-                    <div class="section-label">Our Focus</div>
-                    <h2 class="section-title">Investment Strategies</h2>
-                </div>
-            </div>
-            <div class="featured-grid">
-                <div class="featured-item">
-                    <div class="featured-number">01</div>
-                    <h3 class="featured-title">Growth Capital</h3>
-                    <p class="featured-description">
-                        Providing strategic capital to established businesses seeking to accelerate expansion, enter new markets, or pursue transformative acquisitions across the GCC and EMEA.
-                    </p>
-                </div>
-                <div class="featured-item">
-                    <div class="featured-number">02</div>
-                    <h3 class="featured-title">Buyout Investments</h3>
-                    <p class="featured-description">
-                        Preferred structured capital fund that invests in market-leading businesses with strong fundamentals and significant value creation potential, to selectively capture opportunities arising from the GCC economic transformation and sustainability agenda.
-                    </p>
-                </div>
-                <div class="featured-item">
-                    <div class="featured-number">03</div>
-                    <h3 class="featured-title">Venture Capital</h3>
-                    <p class="featured-description">
-                        Scale-up growth-stage investments in innovative technology companies—particularly leveraging digital tools, data infrastructure, and AI—that are reshaping industries and creating new markets.
-                    </p>
-                </div>
-                <div class="featured-item">
-                    <div class="featured-number">04</div>
-                    <h3 class="featured-title">Real Assets</h3>
-                    <p class="featured-description">
-                        Strategic investments in infrastructure, real estate, and tangible assets that provide stable returns, portfolio diversification, and directly support national resilience priorities.
-                    </p>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="approach" class="page">
-        <section class="section">
-            <div class="section-header">
-                <div class="section-label">Our Approach</div>
-                <h2 class="section-title">Value Creation Through Partnership</h2>
-                <p class="section-description">
-                    Our strategy is centered on scalable, capital-light, and profitable businesses operating in sectors supported by strong structural tailwinds. We believe that sustainable value creation requires deep collaboration, operational enhancement, and technology-led business transformation.
-                </p>
-            </div>
-
-            <div class="pillars">
-                <div class="pillar">
-                    <div class="pillar-number">01</div>
-                    <h3 class="pillar-title">Strategic Expansion</h3>
-                    <p class="pillar-description">
-                        We target market leaders with defensible competitive positions, leveraging our deep network to accelerate their growth through strategic expansion into high-demand GCC markets.
-                    </p>
-                </div>
-                <div class="pillar">
-                    <div class="pillar-number">02</div>
-                    <h3 class="pillar-title">Operational Excellence</h3>
-                    <p class="pillar-description">
-                        We work alongside portfolio companies to drive operational improvements, implement best practices, and enhance commercial effectiveness to support sustainable margin expansion.
-                    </p>
-                </div>
-                <div class="pillar">
-                    <div class="pillar-number">03</div>
-                    <h3 class="pillar-title">Tech & AI Integration</h3>
-                    <p class="pillar-description">
-                        We seek to leverage innovation in digital tools, data infrastructure, automation, and generative AI to improve productivity and strengthen decision-making across the portfolio.
-                    </p>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="team" class="page">
-        <section class="section">
-            <div class="section-header">
-                <div class="section-label">Our People</div>
-                <h2 class="section-title">Experience Meets Innovation</h2>
-                <p class="section-description">
-                    Our team brings together decades of cross-border investment experience with fresh perspectives. United by a commitment to excellence and a passion for building exceptional businesses, we are trusted partners to entrepreneurs, family offices, and institutions worldwide.
-                </p>
-            </div>
-
-            <div style="margin-top: 80px; text-align: center; padding: 60px; background: var(--light-gray); border: 1px solid var(--border-color);">
-                <h3 style="font-size: 24px; color: var(--primary-blue); margin-bottom: 20px;">Careers at Gulf Investment Partners</h3>
-                <p style="color: var(--text-gray); margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">We are always looking for talented professionals driven by excellence who want to make a meaningful impact in the region's economic transformation.</p>
-                <a href="#" class="cta-button" onclick="navigateTo('contact')">Explore Opportunities</a>
-            </div>
-        </section>
-    </div>
-
-    <div id="sectors" class="page">
-        <section class="section" style="background: var(--light-gray);">
-            <div class="section-header">
-                <div class="section-label">Investment Thesis</div>
-                <h2 class="section-title">Target Sectors & Strategy</h2>
-                <p class="section-description">
-                    [cite_start]The Fund pursues a differentiated cross-border strategy focused on investing in selected niche SMEs across EMEA whose products and services are directly relevant to the long-term transformation of GCC economies[cite: 2].
-                </p>
-            </div>
-
-            <div class="sectors-grid">
-                
-                <div class="sector-card">
-                    <div class="sector-icon">&#x1F4A7;</div>
-                    <h3 class="sector-title">Water & Resource Efficiency</h3>
-                    <p class="sector-desc">
-                        Target specialist SMEs in water treatment, reuse, monitoring, leakage detection, and industrial water-efficiency technologies. [cite_start]Water security is a strategic priority for GCC economies, creating a compelling opportunity for proven EMEA platforms[cite: 1].
-                    </p>
-                </div>
-
-                <div class="sector-card">
-                    <div class="sector-icon">&#x267B;&#xFE0F;</div>
-                    <h3 class="sector-title">Circular Economy & Waste Valorization</h3>
-                    <p class="sector-desc">
-                        Focus on businesses active in recycling, packaging circularity, industrial waste recovery, and resource-efficiency services. [cite_start]Attractive companies have proprietary processes, contracted relationships, and the ability to expand through replication[cite: 1].
-                    </p>
-                </div>
-
-                <div class="sector-card">
-                    <div class="sector-icon">&#x1F331;</div>
-                    <h3 class="sector-title">Sustainable Food & Agri Solutions</h3>
-                    <p class="sector-desc">
-                        Back specialist platforms supporting food security through precision irrigation, controlled-environment agriculture, and food supply-chain technology. [cite_start]The strongest opportunities are technology-enabled models with repeat revenues[cite: 1].
-                    </p>
-                </div>
-
-                <div class="sector-card">
-                    <div class="sector-icon">&#x1F3E5;</div>
-                    <h3 class="sector-title">Healthcare Services & HealthTech</h3>
-                    <p class="sector-desc">
-                        Invest in focused healthcare platforms that improve access and outcomes, including diagnostics, digital health, and specialty care. [cite_start]Ideal targets are niche leaders with the ability to drive sustainable margin expansion through digital adoption[cite: 1].
-                    </p>
-                </div>
-
-                <div class="sector-card">
-                    <div class="sector-icon">&#x1F6A2;</div>
-                    <h3 class="sector-title">Logistics Tech & Supply Chain</h3>
-                    <p class="sector-desc">
-                        Focus on asset-light supply chain platforms, including warehouse solutions, fleet optimization, last-mile orchestration, and trade-support services. [cite_start]Target companies demonstrate embedded customer relationships and strong scalability[cite: 1].
-                    </p>
-                </div>
-
-                <div class="sector-card">
-                    <div class="sector-icon">&#x2699;&#xFE0F;</div>
-                    <h3 class="sector-title">Industrial Tech & Smart Manufacturing</h3>
-                    <p class="sector-desc">
-                        [cite_start]Back specialist providers of automation, industrial software, sensor-based quality control, and maintenance solutions that support productivity and localization in industrial value chains, aligning with GCC diversification ambitions[cite: 1].
-                    </p>
-                </div>
-
-            </div>
-        </section>
-        
-        <section class="section" style="background: var(--primary-blue); color: var(--white);">
-            <div class="section-header">
-                <div class="section-label" style="color: var(--accent-gold);">Investment Impact</div>
-                <h2 class="section-title" style="color: var(--white);">Creating Lasting Value</h2>
-                <p class="section-description" style="color: rgba(255,255,255,0.8);">
-                    [cite_start]Sustainability acts as both a value-creation lens and a demand driver for our investments[cite: 3]. Through active partnership and operational support, we help these businesses achieve extraordinary growth while aligning with regional transformation mandates.
-                </p>
-            </div>
-            <div class="stats-grid">
-                <div class="stat-item" style="border-top-color: var(--accent-gold);">
-                    <div class="stat-number" style="color: var(--accent-gold);">3.2x</div>
-                    <div class="stat-label" style="color: rgba(255,255,255,0.7);">Average MOIC</div>
-                </div>
-                <div class="stat-item" style="border-top-color: var(--accent-gold);">
-                    <div class="stat-number" style="color: var(--accent-gold);">42%</div>
-                    <div class="stat-label" style="color: rgba(255,255,255,0.7);">Revenue Growth (Avg)</div>
-                </div>
-                <div class="stat-item" style="border-top-color: var(--accent-gold);">
-                    <div class="stat-number" style="color: var(--accent-gold);">65+</div>
-                    <div class="stat-label" style="color: rgba(255,255,255,0.7);">Successful Exits</div>
-                </div>
-                <div class="stat-item" style="border-top-color: var(--accent-gold);">
-                    <div class="stat-number" style="color: var(--accent-gold);">28%</div>
-                    <div class="stat-label" style="color: rgba(255,255,255,0.7);">IRR (Net)</div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="contact" class="page">
-        <section class="section">
-            <div class="section-header">
-                <div class="section-label">Get in Touch</div>
-                <h2 class="section-title">Let's Start a Conversation</h2>
-                <p class="section-description">
-                    Whether you are an EMEA company seeking strategic GCC expansion, an investor interested in our funds, or a talented professional exploring opportunities, we welcome the dialogue.
-                </p>
-            </div>
-
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Connect With Us</h3>
-                    
-                    <div class="contact-item">
-                        <div class="contact-label">Headquarters</div>
-                        <div class="contact-details">
-                            DIFC, Gate Village 4<br>
-                            Level 15, Office 1501<br>
-                            Dubai, United Arab Emirates
-                        </div>
-                    </div>
-
-                    <div class="contact-item">
-                        <div class="contact-label">General Inquiries</div>
-                        <div class="contact-details">
-                            <a href="mailto:info@gulfinvestment.partners">info@gulfinvestment.partners</a><br>
-                            <a href="tel:+97145551234">+971 4 555 1234</a>
-                        </div>
-                    </div>
-
-                    <div class="contact-item">
-                        <div class="contact-label">Investor Relations</div>
-                        <div class="contact-details">
-                            <a href="mailto:ir@gulfinvestment.partners">ir@gulfinvestment.partners</a><br>
-                            <a href="tel:+97145551235">+971 4 555 1235</a>
-                        </div>
-                    </div>
-
-                    <div class="contact-item">
-                        <div class="contact-label">Regional Presence</div>
-                        <div class="contact-details">
-                            Riyadh | Dubai | Luxembourg
-                        </div>
-                    </div>
-                </div>
-
-                <div class="contact-form">
-                    <form onsubmit="return handleSubmit(event)">
-                        <div class="form-group">
-                            <label for="name">Full Name *</label>
-                            <input type="text" id="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="company">Company</label>
-                            <input type="text" id="company">
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject *</label>
-                            <input type="text" id="subject" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message *</label>
-                            <textarea id="message" required></textarea>
-                        </div>
-                        <button type="submit" class="submit-button">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <img src="GIP logo.png" alt="Gulf Investment Partners">
-                <p>
-                    A leading private capital advisory firm partnering with visionary leaders to unlock sustainable growth and create enduring value across global markets.
-                </p>
-            </div>
-
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="#" onclick="navigateTo('home')">Home</a></li>
-                    <li><a href="#" onclick="navigateTo('approach')">Approach</a></li>
-                    <li><a href="#" onclick="navigateTo('team')">Team</a></li>
-                    <li><a href="#" onclick="navigateTo('sectors')">Target Sectors</a></li>
-                    <li><a href="#" onclick="navigateTo('contact')">Contact</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4>Sectors</h4>
-                <ul>
-                    <li><a href="#" onclick="navigateTo('sectors')">Water & Resource Efficiency</a></li>
-                    <li><a href="#" onclick="navigateTo('sectors')">Circular Economy</a></li>
-                    <li><a href="#" onclick="navigateTo('sectors')">Sustainable Food & Agri</a></li>
-                    <li><a href="#" onclick="navigateTo('sectors')">Healthcare Services</a></li>
-                    <li><a href="#" onclick="navigateTo('sectors')">Logistics Tech</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4>Resources</h4>
-                <ul>
-                    <li><a href="#">Investor Relations</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">News & Insights</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <div>&copy; 2024 Gulf Investment Partners. All rights reserved.</div>
-        </div>
-    </footer>
-
-    <script>
-        // Navigation functionality
-        const navLinks = document.querySelectorAll('.nav-links a');
-        const pages = document.querySelectorAll('.page');
+        // Scroll interactions (Header shadow & Scroll Spy for Nav links)
         const nav = document.getElementById('nav');
+        const sections = document.querySelectorAll('.page-section');
+        const navItems = document.querySelectorAll('.nav-item');
 
-        function navigateTo(pageId) {
-            // Remove active class from all nav links
-            navLinks.forEach(link => link.classList.remove('active'));
-            
-            // Hide all pages
-            pages.forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Show selected page
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
-                
-                // Update active nav link
-                const activeLink = document.querySelector(`[data-page="${pageId}"]`);
-                if (activeLink) {
-                    activeLink.classList.add('active');
-                }
-                
-                // Scroll to top
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-            
-            return false;
-        }
-
-        // Set up navigation click handlers
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const pageId = link.getAttribute('data-page');
-                navigateTo(pageId);
-            });
-        });
-
-        // Scroll effect for nav
         window.addEventListener('scroll', () => {
+            // Add shadow to nav on scroll
             if (window.scrollY > 50) {
                 nav.classList.add('scrolled');
             } else {
                 nav.classList.remove('scrolled');
             }
-        });
 
-        // Form submission
-        function handleSubmit(e) {
-            e.preventDefault();
-            alert('Thank you for your message! We will get back to you shortly.');
-            e.target.reset();
-            return false;
-        }
+            // Scroll Spy logic to highlight active tab
+            let current = '';
+            sections.forEach(section => {
+                // Adjusting the offset slightly to trigger just before it hits the top
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            // Set home as active page
-            navigateTo('home');
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href').includes(current)) {
+                    item.classList.add('active');
+                }
+            });
         });
     </script>
 </body>
 </html>
-```
