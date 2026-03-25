@@ -813,9 +813,9 @@
  
             <!-- Success state -->
             <div id="loginSuccess" style="display:none; text-align:center; padding: 20px 0 10px;">
-                <div style="font-size: 40px; margin-bottom: 18px;">&#10003;</div>
-                <h3 style="font-size: 20px; color: var(--primary-blue); font-weight: 500; margin-bottom: 12px;">Request Received</h3>
-                <p style="font-size: 14px; color: var(--text-gray); line-height: 1.7;">Please contact <a href="/cdn-cgi/l/email-protection#e68f94a681938a808f88908395928b838892c89687949288839495" style="color: var(--accent-gold); font-weight: 600;"><span class="__cf_email__" data-cfemail="fb9289bb9c8e979d92958d9e888f969e958fd58b9a898f959e8988">[email&#160;protected]</span></a> for portal access.</p>
+                <div style="font-size: 40px; margin-bottom: 18px;">&#128274;</div>
+                <h3 style="font-size: 20px; color: var(--primary-blue); font-weight: 500; margin-bottom: 12px;">Portal Not Yet Active</h3>
+                <p style="font-size: 14px; color: var(--text-gray); line-height: 1.8;">The Investor Portal is currently under activation.<br>Please contact <a href="mailto:ir@gulfinvestment.partners" style="color: var(--accent-gold); font-weight: 600;">ir@gulfinvestment.partners</a> for portal access.</p>
                 <button onclick="closeLogin()" style="margin-top: 28px; padding: 12px 36px; background: var(--primary-blue); color: #fff; border: none; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: background 0.3s;" onmouseover="this.style.background='var(--accent-gold)'" onmouseout="this.style.background='var(--primary-blue)'">Close</button>
             </div>
  
@@ -1247,49 +1247,19 @@
             if (e.key === 'Escape') closeLogin();
         });
  
-        async function handleLoginSubmit(e) {
+        function handleLoginSubmit(e) {
             e.preventDefault();
-            const btn      = document.getElementById('loginSubmitBtn');
-            const btnText  = document.getElementById('loginBtnText');
-            const btnLoader= document.getElementById('loginBtnLoader');
-            const form     = document.getElementById('loginForm');
- 
-            // Show loading state
-            btn.disabled = true;
-            btnText.style.display  = 'none';
-            btnLoader.style.display = 'inline';
- 
-            const loginVal = document.getElementById('login-email').value;
- 
-            try {
-                const formData = new FormData();
-                formData.append('login',    loginVal);
-                formData.append('password', '(submitted — not stored)');
-                formData.append('_subject', 'Investor Portal – Login Request');
-                formData.append('_captcha', 'false');
-                formData.append('_template','table');
- 
-                await fetch('https://formsubmit.co/ajax/info@gulfinvestmentpartners.com', {
-                    method: 'POST',
-                    headers: { 'Accept': 'application/json' },
-                    body: formData
-                });
-            } catch (err) {
-                // Silently continue — show success regardless to avoid leaking info
-            }
- 
-            // Hide form, show success message
-            form.style.display = 'none';
-            document.getElementById('loginSuccess').style.display = 'block';
- 
-            // Also hide helper text below form
+            const form    = document.getElementById('loginForm');
             const divider = document.querySelector('.login-divider');
             const support = document.querySelector('.login-support');
             const secNote = document.querySelector('.login-security-note');
+ 
+            // Hide form and helpers, show "portal not active" message
+            form.style.display    = 'none';
             if (divider) divider.style.display = 'none';
             if (support)  support.style.display  = 'none';
             if (secNote)  secNote.style.display  = 'none';
- 
+            document.getElementById('loginSuccess').style.display = 'block';
             return false;
         }
  
@@ -1344,4 +1314,4 @@
             form.style.display       = 'block';
             successBox.style.display = 'none';
             btn.disabled             = false;
-            btnText.style.display
+            btnText.style.display 
