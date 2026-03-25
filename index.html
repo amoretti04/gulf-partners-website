@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gulf Investment Partners - Strategic Capital</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%231b2a53'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia%2C serif' font-size='28' font-weight='700' fill='%23c59c39'%3EGIP%3C/text%3E%3C/svg%3E">
+    <link rel="alternate icon" href="GIP logo.png">
     <style>
         * {
             margin: 0;
@@ -848,7 +850,7 @@
             </form>
  
             <div class="login-divider"><span>Need access?</span></div>
-            <p class="login-support">Contact investor relations at <a href="/cdn-cgi/l/email-protection#84edf6c4e3f1e8e2edeaf2e1f7f0e9e1eaf0aaf4e5f6f0eae1f6f7"><span class="__cf_email__" data-cfemail="c4adb684a3b1a8a2adaab2a1b7b0a9a1aab0eab4a5b6b0aaa1b6b7">[email&#160;protected]</span></a></p>
+            <p class="login-support">Contact investor relations at <a href="mailto:ir@gulfinvestment.partners">ir@gulfinvestment.partners</a></p>
  
             <div class="login-security-note">
                 <span class="lock-icon">🔒</span>
@@ -1097,7 +1099,7 @@
                 <div class="contact-item">
                     <div class="contact-label">General Inquiries</div>
                     <div class="contact-details">
-                        <a href="/cdn-cgi/l/email-protection#650c0b030a25021009030c0b1300161108000b11150417110b0017164b060a08"><span class="__cf_email__" data-cfemail="d9b0b7bfb699beacb5bfb0b7afbcaaadb4bcb7ada9b8abadb7bcabaaf7bab6b4">[email&#160;protected]</span></a>
+                        <a href="mailto:info@gulfinvestmentpartners.com">info@gulfinvestmentpartners.com</a>
                     </div>
                 </div>
  
@@ -1199,19 +1201,25 @@
         </div>
     </footer>
  
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         // ── Login overlay open/close ──
-        const overlay    = document.getElementById('loginOverlay');
-        const closeBtn   = document.getElementById('loginClose');
-        const backdrop   = document.getElementById('loginBackdrop');
-        const investorsBtn = document.getElementById('investorsBtn');
-        const footerInvestorsLink = document.getElementById('footerInvestorsLink');
+        const overlay   = document.getElementById('loginOverlay');
+        const closeBtn  = document.getElementById('loginClose');
+        const backdrop  = document.getElementById('loginBackdrop');
  
         function openLogin(e) {
-            e.preventDefault();
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            if (e) e.preventDefault();
+            if (overlay) {
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
         }
+ 
+        const investorsBtn = document.getElementById('investorsBtn');
+        if (investorsBtn) investorsBtn.addEventListener('click', openLogin);
+ 
+        const footerInvestorsLink = document.getElementById('footerInvestorsLink');
+        if (footerInvestorsLink) footerInvestorsLink.addEventListener('click', openLogin);
  
         function closeLogin() {
             overlay.classList.remove('active');
@@ -1237,10 +1245,8 @@
             if (btnLoader)btnLoader.style.display = 'none';
         }
  
-        investorsBtn.addEventListener('click', openLogin);
-        footerInvestorsLink.addEventListener('click', openLogin);
-        closeBtn.addEventListener('click', closeLogin);
-        backdrop.addEventListener('click', closeLogin);
+        if (closeBtn) closeBtn.addEventListener('click', closeLogin);
+        if (backdrop) backdrop.addEventListener('click', closeLogin);
  
         // Close on Escape key
         document.addEventListener('keydown', (e) => {
@@ -1314,4 +1320,4 @@
             form.style.display       = 'block';
             successBox.style.display = 'none';
             btn.disabled             = false;
-            btnText.style.display 
+            btnText.style.display
